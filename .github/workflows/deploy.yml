@@ -1,0 +1,44 @@
+name: Deploy AZ Portfolio Symfony
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: symfony-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure SSH
+        run: |
+          install -m 700 -d ~/.ssh
+
+          printf '%s\n' "${{ secrets.LINODE_SSH_KEY }}" > ~/.ssh/id_ed25519
+
+          chmod 600 ~/.ssh/id_ed25519
+
+          ssh-keyscan -H "${{ secrets.LINODE_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy Symfony application
+        run: |
+          ssh "${{ secrets.LINODE_USER }}@${{ secrets.LINODE_HOST }}" << 'EOF'
+            set -e
+
+            cd /var/www/html/symfony.adrian-zalewski.com/public_html
+
+            git fetch origin main
+            git reset --hard origin/main
+
+            composer install --no-dev --optimize-autoloader
+
+            APP_ENV=prod php bin/console cache:clear
+            APP_ENV=prod php bin/console cache:warmup
+          EOF

@@ -1,0 +1,9 @@
+.git
+.gitignore
+.github
+vendor
+var
+.env.local
+.env.local.php
+docker-compose.override.yml
+compose.override.yaml

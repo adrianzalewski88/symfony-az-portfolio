@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: az-portfolio-symfony
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor
+      - /var/www/html/var
+    environment:
+      APP_ENV: dev
+      APP_DEBUG: 1
+    restart: unless-stopped
