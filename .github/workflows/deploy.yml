@@ -37,7 +37,13 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
 
-            composer install --no-dev --optimize-autoloader
+            composer install \
+              --no-dev \
+              --no-interaction \
+              --prefer-dist \
+              --optimize-autoloader
+
+            APP_ENV=prod php bin/console doctrine:migrations:migrate --no-interaction
 
             APP_ENV=prod php bin/console cache:clear
             APP_ENV=prod php bin/console cache:warmup

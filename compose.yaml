@@ -3,14 +3,60 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: az-portfolio-symfony
+    container_name: az-portfolio-symfony-app
+    restart: unless-stopped
     ports:
       - "8081:80"
-    volumes:
-      - .:/var/www/html
-      - /var/www/html/vendor
-      - /var/www/html/var
     environment:
       APP_ENV: dev
-      APP_DEBUG: 1
+      APP_DEBUG: "1"
+      DATABASE_URL: "mysql://az_portfolio:az_portfolio_password@database:3306/az_portfolio?serverVersion=8.4&charset=utf8mb4"
+    volumes:
+      - ./:/var/www/html
+      - symfony_vendor:/var/www/html/vendor
+      - symfony_var:/var/www/html/var
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - az-portfolio-network
+
+  database:
+    image: mysql:8.4
+    container_name: az-portfolio-symfony-database
     restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: az_portfolio
+      MYSQL_USER: az_portfolio
+      MYSQL_PASSWORD: az_portfolio_password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3308:3306"
+    volumes:
+      - symfony_mysql_data:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-proot_password"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - az-portfolio-network
+
+volumes:
+  symfony_mysql_data:
+  symfony_vendor:
+  symfony_var:
+
+networks:
+  az-portfolio-network:
+    driver: bridge
