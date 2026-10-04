@@ -41,7 +41,8 @@ jobs:
               --no-dev \
               --no-interaction \
               --prefer-dist \
-              --optimize-autoloader
+              --optimize-autoloader \
+              --no-scripts
 
             APP_ENV=prod php bin/console doctrine:migrations:migrate --no-interaction
 
