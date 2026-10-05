@@ -44,6 +44,8 @@ jobs:
               --optimize-autoloader \
               --no-scripts
 
+            APP_ENV=prod php bin/console sass:build
+
             rm -rf var/cache/prod
 
             APP_ENV=prod php bin/console doctrine:migrations:migrate --no-interaction
