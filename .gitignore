@@ -37,3 +37,8 @@
 .DS_Store
 Thumbs.db
 ###< OS ###
+
+###> symfony/asset-mapper ###
+/public/assets/
+/assets/vendor/
+###< symfony/asset-mapper ###

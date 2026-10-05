@@ -1,0 +1,156 @@
+<div class="skill-table-wrapper">
+
+    <table class="skill-table">
+
+        <thead>
+            <tr>
+                <th>Skill</th>
+                <th>Category</th>
+                <th>Rating</th>
+                <th>Order</th>
+                <th>Updated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for skill in skills %}
+
+                <tr>
+
+                    <td>
+                        <div class="skill-table__name">
+
+                            <strong>
+                                {{ skill.name }}
+                            </strong>
+
+                            {% if skill.description %}
+
+                                <span>
+                                    {{ skill.description|striptags|slice(0, 80) }}
+
+                                    {% if skill.description|length > 80 %}
+                                        …
+                                    {% endif %}
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+                    </td>
+
+                    <td>
+
+                        {% if skill.category %}
+
+                            <span class="skill-table__category">
+                                {{ skill.category.name }}
+                            </span>
+
+                        {% else %}
+
+                            <span class="skill-table__uncategorized">
+                                Uncategorized
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        <div class="skill-table__rating">
+
+                            <strong>
+                                {{ skill.rating }}%
+                            </strong>
+
+                            <div class="skill-table__rating-track">
+
+                                <div
+                                    class="skill-table__rating-fill"
+                                    style="--skill-rating: {{ skill.rating }}%;"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+                        {{ skill.sortOrder }}
+                    </td>
+
+                    <td>
+                        {{ skill.updatedAt|date('M j, Y') }}
+                    </td>
+
+                    <td>
+
+                        <div class="skill-table__actions">
+
+                            <a
+                                href="{{ path('dashboard_skills_edit', {
+                                    id: skill.id
+                                }) }}"
+                                class="btn btn--small btn--secondary"
+                            >
+                                Edit
+                            </a>
+
+                            <form
+                                action="{{ path('dashboard_skills_delete', {
+                                    id: skill.id
+                                }) }}"
+                                method="post"
+                                class="inline-form"
+                                onsubmit="return confirm('Are you sure you want to delete this skill?');"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="btn btn--small btn--danger"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            {% else %}
+
+                <tr>
+
+                    <td colspan="6">
+
+                        <div class="empty-state">
+
+                            <h3>
+                                No skills found
+                            </h3>
+
+                            <p>
+                                Try changing your search or category filters.
+                            </p>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>

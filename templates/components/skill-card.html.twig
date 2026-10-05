@@ -1,0 +1,64 @@
+<article class="skill-card">
+
+    <div class="skill-card__header">
+
+        <div>
+            <h2 class="skill-card__name">
+                {{ skill.name }}
+            </h2>
+
+            {% if skill.category %}
+                <span class="skill-card__category">
+                    {{ skill.category.name }}
+                </span>
+            {% endif %}
+        </div>
+
+    </div>
+
+    {% if skill.description %}
+        <p class="skill-card__description">
+            {{ skill.description }}
+        </p>
+    {% endif %}
+
+    <div class="skill-card__footer">
+
+        {% include 'components/skill-meter.html.twig' with {
+            skill: skill
+        } %}
+
+        <div class="skill-card__actions">
+
+            <a
+                href="{{ path('dashboard_skills_edit', {
+                    id: skill.id
+                }) }}"
+                class="btn btn--small btn--secondary"
+            >
+                Edit
+            </a>
+
+            <form
+                action="{{ path('dashboard_skills_delete', {
+                    id: skill.id
+                }) }}"
+                method="post"
+                class="inline-form"
+                onsubmit="return confirm('Are you sure you want to delete this skill?');"
+            >
+
+                <button
+                    type="submit"
+                    class="btn btn--small btn--danger"
+                >
+                    Delete
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</article>

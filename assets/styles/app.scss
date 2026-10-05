@@ -1,0 +1,1928 @@
+/* =========================================================
+   AZ PORTFOLIO SYMFONY
+   Global + Dashboard Styles
+   ========================================================= */
+
+
+/* =========================================================
+   Variables
+   ========================================================= */
+
+$primary: #1F69FF;
+$secondary: #711FFF;
+$surface: #ceeeff;
+
+$success: #22c55e;
+$warning: #facc15;
+$danger: #ef4444;
+
+$text: #172033;
+$text-muted: #64748b;
+
+$white: #ffffff;
+
+$border: rgba(15, 23, 42, 0.08);
+
+$radius: 1rem;
+$transition: 0.2s ease;
+
+
+/* =========================================================
+   Reset
+   ========================================================= */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-width: 320px;
+}
+
+body {
+    min-width: 320px;
+
+    color: $text;
+
+    background: $white;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+}
+
+
+/* =========================================================
+   Dashboard Page
+   ========================================================= */
+
+.dashboard-page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 4rem 1.5rem;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba($primary, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba($secondary, 0.12),
+            transparent 35%
+        ),
+        #f5f8ff;
+}
+
+.dashboard-container {
+    width: min(1400px, 100%);
+
+    margin: 0 auto;
+}
+
+.dashboard-container--narrow {
+    max-width: 900px;
+}
+
+
+/* =========================================================
+   Dashboard Header
+   ========================================================= */
+
+.dashboard-header,
+.dashboard-page__header {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 2rem;
+
+    margin-bottom: 2.5rem;
+}
+
+.dashboard-eyebrow,
+.dashboard-page__eyebrow {
+    display: block;
+
+    margin-bottom: 0.5rem;
+
+    color: $primary;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.dashboard-title,
+.dashboard-page__title {
+    margin: 0;
+
+    color: $text;
+
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.dashboard-subtitle,
+.dashboard-page__description {
+    max-width: 700px;
+
+    margin: 1rem 0 0;
+
+    color: $text-muted;
+
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 2.75rem;
+
+    padding: 0.7rem 1.1rem;
+
+    border: 1px solid transparent;
+    border-radius: 0.7rem;
+
+    font-size: 0.85rem;
+    font-weight: 800;
+
+    line-height: 1;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform $transition,
+        box-shadow $transition,
+        background $transition,
+        border-color $transition,
+        color $transition;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn--primary {
+    background: linear-gradient(
+        135deg,
+        $primary,
+        $secondary
+    );
+
+    color: $white;
+
+    box-shadow:
+        0 0.75rem 1.75rem rgba($primary, 0.2);
+}
+
+.btn--primary:hover {
+    box-shadow:
+        0 1rem 2rem rgba($primary, 0.28);
+}
+
+.btn--secondary {
+    border-color: rgba($primary, 0.15);
+
+    background: rgba($white, 0.8);
+
+    color: $primary;
+}
+
+.btn--secondary:hover {
+    border-color: rgba($primary, 0.3);
+
+    background: rgba($primary, 0.05);
+}
+
+.btn--danger {
+    border-color: rgba($danger, 0.15);
+
+    background: rgba($danger, 0.06);
+
+    color: $danger;
+}
+
+.btn--danger:hover {
+    border-color: rgba($danger, 0.3);
+
+    background: rgba($danger, 0.1);
+}
+
+.btn--small {
+    min-height: 2.25rem;
+
+    padding: 0.55rem 0.8rem;
+
+    font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   Dashboard Stats
+   ========================================================= */
+
+.dashboard-stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 1.25rem;
+
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    padding: 1.5rem;
+
+    border: 1px solid rgba($primary, 0.12);
+    border-radius: 1.25rem;
+
+    background: rgba($white, 0.8);
+
+    box-shadow:
+        0 20px 50px rgba($primary, 0.08);
+
+    backdrop-filter: blur(15px);
+}
+
+.stat-card__label {
+    display: block;
+
+    margin-bottom: 0.5rem;
+
+    color: $text-muted;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.stat-card__value {
+    color: $text;
+
+    font-size: 2rem;
+    font-weight: 900;
+
+    line-height: 1.1;
+}
+
+
+/* =========================================================
+   Dashboard Form Card
+   ========================================================= */
+
+.dashboard-form-card,
+.cms-card {
+    width: 100%;
+
+    padding: 2rem;
+
+    border: 1px solid rgba($primary, 0.1);
+    border-radius: 1.25rem;
+
+    background: rgba($white, 0.82);
+
+    box-shadow:
+        0 1.25rem 3.5rem rgba($primary, 0.08);
+
+    backdrop-filter: blur(15px);
+}
+
+
+/* =========================================================
+   Dashboard Form
+   ========================================================= */
+
+.dashboard-form,
+.cms-card form {
+    width: 100%;
+}
+
+.dashboard-form__grid,
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 1.5rem;
+}
+
+.dashboard-form__field,
+.form-field {
+    min-width: 0;
+}
+
+.dashboard-form__field--full,
+.form-field--full {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   Form Rows
+   ========================================================= */
+
+.dashboard-form .form-row,
+.cms-card .form-row {
+    width: 100%;
+}
+
+.dashboard-form label,
+.cms-card label {
+    display: block;
+
+    margin-bottom: 0.55rem;
+
+    color: $text;
+
+    font-size: 0.82rem;
+    font-weight: 800;
+
+    line-height: 1.3;
+}
+
+.dashboard-form input,
+.dashboard-form textarea,
+.dashboard-form select,
+.cms-card input,
+.cms-card textarea,
+.cms-card select {
+    display: block;
+
+    width: 100%;
+
+    padding: 0.85rem 1rem;
+
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 0.7rem;
+
+    background: rgba($white, 0.92);
+
+    color: $text;
+
+    font-size: 0.9rem;
+
+    line-height: 1.5;
+
+    outline: none;
+
+    transition:
+        border-color $transition,
+        box-shadow $transition,
+        background $transition,
+        transform $transition;
+}
+
+.dashboard-form input,
+.dashboard-form select,
+.cms-card input,
+.cms-card select {
+    min-height: 3rem;
+}
+
+.dashboard-form textarea,
+.cms-card textarea {
+    min-height: 160px;
+
+    resize: vertical;
+}
+
+.dashboard-form input::placeholder,
+.dashboard-form textarea::placeholder,
+.cms-card input::placeholder,
+.cms-card textarea::placeholder {
+    color: rgba($text-muted, 0.7);
+}
+
+.dashboard-form input:hover,
+.dashboard-form textarea:hover,
+.dashboard-form select:hover,
+.cms-card input:hover,
+.cms-card textarea:hover,
+.cms-card select:hover {
+    border-color: rgba($primary, 0.25);
+}
+
+.dashboard-form input:focus,
+.dashboard-form textarea:focus,
+.dashboard-form select:focus,
+.cms-card input:focus,
+.cms-card textarea:focus,
+.cms-card select:focus {
+    border-color: $primary;
+
+    background: $white;
+
+    box-shadow:
+        0 0 0 3px rgba($primary, 0.1);
+}
+
+
+/* =========================================================
+   Form Help Text
+   ========================================================= */
+
+.dashboard-form .form-help,
+.cms-card .form-help {
+    display: block;
+
+    margin-top: 0.45rem;
+
+    color: $text-muted;
+
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   Form Errors
+   ========================================================= */
+
+.dashboard-form .form-error,
+.cms-card .form-error {
+    margin-top: 0.4rem;
+
+    color: $danger;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.dashboard-form input.is-invalid,
+.dashboard-form textarea.is-invalid,
+.dashboard-form select.is-invalid {
+    border-color: $danger;
+}
+
+.dashboard-form input.is-invalid:focus,
+.dashboard-form textarea.is-invalid:focus,
+.dashboard-form select.is-invalid:focus {
+    box-shadow:
+        0 0 0 3px rgba($danger, 0.1);
+}
+
+
+/* =========================================================
+   Form Actions
+   ========================================================= */
+
+.dashboard-form__actions,
+.form-actions {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    flex-wrap: wrap;
+
+    gap: 0.75rem;
+
+    margin-top: 2rem;
+
+    padding-top: 1.5rem;
+
+    border-top: 1px solid $border;
+}
+
+
+/* =========================================================
+   Skills Form
+   ========================================================= */
+
+.skill-form-card {
+    width: 100%;
+}
+
+.skill-form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 1.5rem;
+}
+
+.skill-form-field--full {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   Category Table
+   ========================================================= */
+
+.category-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid rgba($primary, 0.1);
+    border-radius: $radius;
+
+    background: rgba($white, 0.8);
+
+    box-shadow:
+        0 1rem 3rem rgba($primary, 0.06);
+}
+
+.category-table {
+    width: 100%;
+    min-width: 850px;
+
+    border-collapse: collapse;
+}
+
+.category-table th {
+    padding: 1rem;
+
+    background: rgba($primary, 0.04);
+
+    color: $text-muted;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 0.06em;
+
+    text-align: left;
+
+    text-transform: uppercase;
+}
+
+.category-table td {
+    padding: 1rem;
+
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+
+    vertical-align: middle;
+}
+
+.category-table tbody tr {
+    transition:
+        background $transition,
+        transform $transition;
+}
+
+.category-table tbody tr:hover {
+    background: rgba($primary, 0.025);
+}
+
+.category-table__name {
+    display: flex;
+    align-items: center;
+}
+
+.category-table__name strong {
+    color: $text;
+
+    font-size: 0.95rem;
+}
+
+.category-table__slug {
+    display: inline-flex;
+
+    padding: 0.35rem 0.6rem;
+
+    border-radius: 999px;
+
+    background: rgba($primary, 0.07);
+
+    color: $primary;
+
+    font-family: monospace;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.category-table__description {
+    display: block;
+
+    max-width: 360px;
+
+    overflow: hidden;
+
+    color: $text-muted;
+
+    font-size: 0.85rem;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.category-table__empty {
+    color: rgba($text-muted, 0.75);
+
+    font-size: 0.8rem;
+
+    font-style: italic;
+}
+
+.category-table__order {
+    display: inline-flex;
+
+    min-width: 2rem;
+    min-height: 2rem;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 0.5rem;
+
+    background: rgba($secondary, 0.08);
+
+    color: $secondary;
+
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.category-table__actions {
+    display: flex;
+
+    gap: 0.4rem;
+}
+
+
+/* =========================================================
+   Skill Table
+   ========================================================= */
+
+.skill-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid rgba($primary, 0.1);
+    border-radius: $radius;
+
+    background: rgba($white, 0.8);
+
+    box-shadow:
+        0 1rem 3rem rgba($primary, 0.06);
+}
+
+.skill-table {
+    width: 100%;
+    min-width: 900px;
+
+    border-collapse: collapse;
+}
+
+.skill-table th {
+    padding: 1rem;
+
+    background: rgba($primary, 0.04);
+
+    color: $text-muted;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 0.06em;
+
+    text-align: left;
+
+    text-transform: uppercase;
+}
+
+.skill-table td {
+    padding: 1rem;
+
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+
+    vertical-align: middle;
+}
+
+.skill-table tbody tr {
+    transition:
+        background $transition,
+        transform $transition;
+}
+
+.skill-table tbody tr:hover {
+    background: rgba($primary, 0.025);
+}
+
+.skill-table__name {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.25rem;
+}
+
+.skill-table__name strong {
+    color: $text;
+}
+
+.skill-table__name span {
+    display: block;
+
+    max-width: 280px;
+
+    overflow: hidden;
+
+    color: $text-muted;
+
+    font-size: 0.8rem;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.skill-table__category {
+    display: inline-flex;
+
+    padding: 0.35rem 0.6rem;
+
+    border-radius: 999px;
+
+    background: rgba($secondary, 0.08);
+
+    color: $secondary;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.skill-table__uncategorized {
+    color: rgba($text-muted, 0.75);
+
+    font-size: 0.8rem;
+}
+
+.skill-table__rating {
+    min-width: 120px;
+}
+
+.skill-table__rating strong {
+    display: block;
+
+    margin-bottom: 0.35rem;
+
+    color: $text;
+
+    font-size: 0.85rem;
+}
+
+.skill-table__rating-track {
+    width: 100%;
+    height: 5px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #e2e8f0;
+}
+
+.skill-table__rating-fill {
+    width: var(--skill-rating);
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            $danger 0%,
+            $warning 50%,
+            $success 100%
+        );
+}
+
+.skill-table__actions {
+    display: flex;
+
+    gap: 0.4rem;
+}
+
+
+/* =========================================================
+   Skill Cards
+   ========================================================= */
+
+.skill-card {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 1.5rem;
+
+    border: 1px solid rgba($primary, 0.1);
+    border-radius: 1.25rem;
+
+    background: rgba($white, 0.82);
+
+    box-shadow:
+        0 1rem 3rem rgba($primary, 0.06);
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba($primary, 0.2);
+
+    box-shadow:
+        0 1.5rem 3.5rem rgba($primary, 0.1);
+}
+
+.skill-card__header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-bottom: 1rem;
+}
+
+.skill-card__name {
+    margin: 0;
+
+    color: $text;
+
+    font-size: 1.15rem;
+    font-weight: 900;
+}
+
+.skill-card__category {
+    display: inline-flex;
+
+    padding: 0.35rem 0.6rem;
+
+    border-radius: 999px;
+
+    background: rgba($secondary, 0.08);
+
+    color: $secondary;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.skill-card__description {
+    margin: 0 0 1.25rem;
+
+    color: $text-muted;
+
+    font-size: 0.85rem;
+
+    line-height: 1.7;
+}
+
+.skill-card__rating {
+    margin-top: auto;
+}
+
+
+/* =========================================================
+   Skill Meter
+   ========================================================= */
+
+.skill-meter {
+    width: 100%;
+}
+
+.skill-meter__header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 0.5rem;
+}
+
+.skill-meter__name {
+    color: $text;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.skill-meter__label {
+    color: $text;
+
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.skill-meter__value {
+    color: $primary;
+
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+.skill-meter__track {
+    width: 100%;
+    height: 8px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #e2e8f0;
+}
+
+.skill-meter__fill {
+    width: var(--skill-rating);
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            $danger 0%,
+            $warning 50%,
+            $success 100%
+        );
+
+    transition: width 0.5s ease;
+}
+
+/* =========================================================
+   Skills Dashboard
+   ========================================================= */
+
+
+/* =========================================================
+   Dashboard Header Actions
+   ========================================================= */
+
+.dashboard-header__actions {
+    display: flex;
+
+    align-items: center;
+
+    flex-shrink: 0;
+}
+
+.dashboard-header__actions .btn {
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   Alerts
+   ========================================================= */
+
+.alert {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    margin-bottom: 1.5rem;
+
+    padding: 1rem 1.25rem;
+
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+
+    font-size: 0.875rem;
+    font-weight: 700;
+
+    line-height: 1.5;
+}
+
+.alert--success {
+    border-color: rgba($success, 0.2);
+
+    background: rgba($success, 0.08);
+
+    color: #15803d;
+}
+
+.alert--danger {
+    border-color: rgba($danger, 0.2);
+
+    background: rgba($danger, 0.08);
+
+    color: #b91c1c;
+}
+
+
+/* =========================================================
+   Skill Filters
+   ========================================================= */
+
+.skill-filters {
+    width: 100%;
+
+    margin-bottom: 2rem;
+
+    padding: 1.5rem;
+
+    border: 1px solid rgba($primary, 0.1);
+    border-radius: 1.25rem;
+
+    background: rgba($white, 0.82);
+
+    box-shadow:
+        0 1rem 3rem rgba($primary, 0.06);
+
+    backdrop-filter: blur(15px);
+}
+
+.skill-filters__form {
+    display: grid;
+
+    grid-template-columns:
+        minmax(220px, 2fr)
+        repeat(3, minmax(150px, 1fr))
+        auto;
+
+    align-items: end;
+
+    gap: 1rem;
+}
+
+.skill-filters__search,
+.skill-filters__field {
+    min-width: 0;
+}
+
+.skill-filters__search label,
+.skill-filters__field label {
+    display: block;
+
+    margin-bottom: 0.5rem;
+
+    color: $text;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.skill-filters__search input,
+.skill-filters__field select {
+    display: block;
+
+    width: 100%;
+    min-height: 3rem;
+
+    padding: 0.75rem 0.9rem;
+
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 0.7rem;
+
+    background: rgba($white, 0.9);
+
+    color: $text;
+
+    font-size: 0.875rem;
+
+    outline: none;
+
+    transition:
+        border-color $transition,
+        box-shadow $transition,
+        background $transition;
+}
+
+.skill-filters__search input::placeholder {
+    color: rgba($text-muted, 0.7);
+}
+
+.skill-filters__search input:hover,
+.skill-filters__field select:hover {
+    border-color: rgba($primary, 0.25);
+}
+
+.skill-filters__search input:focus,
+.skill-filters__field select:focus {
+    border-color: $primary;
+
+    background: $white;
+
+    box-shadow:
+        0 0 0 3px rgba($primary, 0.1);
+}
+
+.skill-filters__actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+}
+
+.skill-filters__actions .btn {
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   Active Filters
+   ========================================================= */
+
+.active-filters {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 0.5rem;
+
+    margin-top: 1.25rem;
+
+    padding-top: 1.25rem;
+
+    border-top: 1px solid $border;
+}
+
+.active-filters__label {
+    color: $text-muted;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.filter-chip {
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 2rem;
+
+    padding: 0.35rem 0.7rem;
+
+    border: 1px solid rgba($primary, 0.12);
+    border-radius: 999px;
+
+    background: rgba($primary, 0.06);
+
+    color: $primary;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.filter-chip--clear {
+    border-color: rgba($danger, 0.15);
+
+    background: rgba($danger, 0.05);
+
+    color: $danger;
+
+    text-decoration: none;
+
+    transition:
+        background $transition,
+        border-color $transition,
+        transform $transition;
+}
+
+.filter-chip--clear:hover {
+    border-color: rgba($danger, 0.3);
+
+    background: rgba($danger, 0.1);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   Skill Results Header
+   ========================================================= */
+
+.skill-results-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1.5rem;
+
+    margin-bottom: 1.25rem;
+}
+
+.skill-results-header__summary {
+    display: flex;
+
+    align-items: baseline;
+
+    flex-wrap: wrap;
+
+    gap: 0.4rem;
+}
+
+.skill-results-header__summary strong {
+    color: $text;
+
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.skill-results-header__summary span {
+    color: $text-muted;
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   Skill View Toggle
+   ========================================================= */
+
+.skill-view-toggle {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 0.25rem;
+
+    border: 1px solid rgba($primary, 0.1);
+    border-radius: 0.75rem;
+
+    background: rgba($white, 0.75);
+
+    box-shadow:
+        0 0.5rem 1.5rem rgba($primary, 0.04);
+}
+
+.view-toggle__button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 4.5rem;
+    min-height: 2.25rem;
+
+    padding: 0.5rem 0.8rem;
+
+    border-radius: 0.55rem;
+
+    color: $text-muted;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition:
+        background $transition,
+        color $transition,
+        box-shadow $transition,
+        transform $transition;
+}
+
+.view-toggle__button:hover {
+    color: $primary;
+
+    background: rgba($primary, 0.05);
+}
+
+.view-toggle__button.is-active {
+    background:
+        linear-gradient(
+            135deg,
+            $primary,
+            $secondary
+        );
+
+    color: $white;
+
+    box-shadow:
+        0 0.4rem 1rem rgba($primary, 0.18);
+}
+
+
+/* =========================================================
+   Skill Grid
+   ========================================================= */
+
+.skill-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(280px, 1fr)
+        );
+
+    gap: 1.25rem;
+}
+
+
+/* =========================================================
+   Skill Card
+   ========================================================= */
+
+.skill-card {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+
+    padding: 1.5rem;
+
+    overflow: hidden;
+
+    border: 1px solid rgba($primary, 0.1);
+    border-radius: 1.25rem;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba($white, 0.92),
+            rgba($surface, 0.35)
+        );
+
+    box-shadow:
+        0 1rem 3rem rgba($primary, 0.07);
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.skill-card::before {
+    position: absolute;
+
+    top: -5rem;
+    right: -5rem;
+
+    width: 10rem;
+    height: 10rem;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba($secondary, 0.1),
+            transparent 70%
+        );
+
+    content: "";
+
+    pointer-events: none;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba($primary, 0.2);
+
+    box-shadow:
+        0 1.5rem 3.5rem rgba($primary, 0.11);
+}
+
+.skill-card__header {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-bottom: 1rem;
+}
+
+.skill-card__title {
+    margin: 0;
+
+    color: $text;
+
+    font-size: 1.15rem;
+    font-weight: 900;
+
+    line-height: 1.2;
+}
+
+.skill-card__name {
+    margin: 0;
+
+    color: $text;
+
+    font-size: 1.15rem;
+    font-weight: 900;
+
+    line-height: 1.2;
+}
+
+.skill-card__category {
+    display: inline-flex;
+
+    flex-shrink: 0;
+
+    padding: 0.35rem 0.6rem;
+
+    border-radius: 999px;
+
+    background: rgba($secondary, 0.08);
+
+    color: $secondary;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.skill-card__description {
+    position: relative;
+    z-index: 1;
+
+    flex: 1;
+
+    margin: 0 0 1.5rem;
+
+    color: $text-muted;
+
+    font-size: 0.85rem;
+
+    line-height: 1.7;
+}
+
+.skill-card__footer {
+    position: relative;
+    z-index: 1;
+
+    margin-top: auto;
+}
+
+
+/* =========================================================
+   Skill Meter
+   ========================================================= */
+
+.skill-meter {
+    width: 100%;
+}
+
+.skill-meter__header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-bottom: 0.5rem;
+}
+
+.skill-meter__label {
+    color: $text;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+.skill-meter__value {
+    color: $primary;
+
+    font-size: 0.85rem;
+    font-weight: 900;
+}
+
+.skill-meter__track {
+    width: 100%;
+    height: 8px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #e2e8f0;
+}
+
+.skill-meter__fill {
+    width: var(--skill-rating);
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            $danger 0%,
+            $warning 50%,
+            $success 100%
+        );
+
+    box-shadow:
+        0 0 0.75rem rgba($success, 0.15);
+
+    transition:
+        width 0.6s ease;
+}
+
+
+/* =========================================================
+   Skill Card Actions
+   ========================================================= */
+
+.skill-card__actions {
+    display: flex;
+
+    gap: 0.5rem;
+
+    margin-top: 1.25rem;
+
+    padding-top: 1.25rem;
+
+    border-top: 1px solid $border;
+}
+
+.skill-card__actions .btn {
+    flex: 1;
+}
+
+
+/* =========================================================
+   Skills Responsive
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .skill-filters__form {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .skill-filters__search {
+        grid-column: 1 / -1;
+    }
+
+    .skill-filters__actions {
+        grid-column: 1 / -1;
+
+        justify-content: flex-end;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .skill-results-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .skill-view-toggle {
+        align-self: flex-start;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .skill-filters {
+        padding: 1rem;
+    }
+
+    .skill-filters__form {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-filters__search,
+    .skill-filters__actions {
+        grid-column: auto;
+    }
+
+    .skill-filters__actions {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+    .skill-filters__actions .btn {
+        width: 100%;
+    }
+
+    .active-filters {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-card__header {
+        flex-direction: column;
+    }
+
+    .skill-card__category {
+        align-self: flex-start;
+    }
+
+}
+
+
+/* =========================================================
+   Reduced Motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .skill-card,
+    .skill-meter__fill,
+    .view-toggle__button,
+    .filter-chip--clear {
+        transition: none;
+    }
+
+}
+
+
+/* =========================================================
+   Flash Messages
+   ========================================================= */
+
+.flash-message {
+    margin-bottom: 1.5rem;
+
+    padding: 1rem 1.25rem;
+
+    border-radius: 0.75rem;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.flash-message--success {
+    border: 1px solid rgba($success, 0.2);
+
+    background: rgba($success, 0.08);
+
+    color: #15803d;
+}
+
+.flash-message--error {
+    border: 1px solid rgba($danger, 0.2);
+
+    background: rgba($danger, 0.08);
+
+    color: #b91c1c;
+}
+
+.flash-message--warning {
+    border: 1px solid rgba($warning, 0.25);
+
+    background: rgba($warning, 0.12);
+
+    color: #a16207;
+}
+
+
+/* =========================================================
+   Empty State
+   ========================================================= */
+
+.empty-state {
+    padding: 4rem 2rem;
+
+    border: 1px solid rgba($primary, 0.1);
+    border-radius: $radius;
+
+    background: rgba($white, 0.8);
+
+    text-align: center;
+
+    box-shadow:
+        0 1rem 3rem rgba($primary, 0.05);
+}
+
+.empty-state__icon {
+    width: 3rem;
+    height: 3rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 1rem;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            $primary,
+            $secondary
+        );
+
+    color: $white;
+
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.empty-state h2,
+.empty-state h3 {
+    margin: 0 0 0.5rem;
+
+    color: $text;
+}
+
+.empty-state p {
+    max-width: 500px;
+
+    margin: 0 auto 1.5rem;
+
+    color: $text-muted;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   Inline Forms
+   ========================================================= */
+
+.inline-form {
+    display: inline;
+}
+
+
+/* =========================================================
+   Responsive Dashboard
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-header,
+    .dashboard-page__header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-form__grid,
+    .form-grid,
+    .skill-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-form__field--full,
+    .form-field--full,
+    .skill-form-field--full {
+        grid-column: auto;
+    }
+
+    .dashboard-form-card,
+    .cms-card {
+        padding: 1.5rem;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard-page {
+        padding: 2.5rem 1rem;
+    }
+
+    .dashboard-title,
+    .dashboard-page__title {
+        font-size: clamp(2rem, 12vw, 3rem);
+    }
+
+    .dashboard-form-card,
+    .cms-card {
+        padding: 1.25rem;
+    }
+
+    .dashboard-form__actions,
+    .form-actions {
+        align-items: stretch;
+
+        flex-direction: column-reverse;
+    }
+
+    .dashboard-form__actions .btn,
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    .category-table__actions,
+    .skill-table__actions {
+        flex-direction: column;
+    }
+
+}
+
+
+/* =========================================================
+   Reduced Motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+}

@@ -1,0 +1,418 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Skills Dashboard{% endblock %}
+
+{% block body %}
+
+<div class="dashboard-page">
+
+    <div class="dashboard-container">
+
+        {# Header #}
+        <header class="dashboard-header">
+
+            <div>
+                <span class="dashboard-eyebrow">
+                    AZ Portfolio CMS
+                </span>
+
+                <h1 class="dashboard-title">
+                    Skills
+                </h1>
+
+                <p class="dashboard-subtitle">
+                    Manage your technical skills, proficiency ratings,
+                    categories, and display order.
+                </p>
+            </div>
+
+            <div class="dashboard-header__actions">
+                <a
+                    href="{{ path('dashboard_skills_new') }}"
+                    class="btn btn--primary"
+                >
+                    <span>+</span>
+                    Add Skill
+                </a>
+            </div>
+
+        </header>
+
+        {# Flash Messages #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert--success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('error') %}
+            <div class="alert alert--danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {# Filters #}
+        <section class="skill-filters">
+
+            <form
+                method="get"
+                action="{{ path('dashboard_skills_index') }}"
+                class="skill-filters__form"
+            >
+
+                <div class="skill-filters__search">
+
+                    <label for="skill-search">
+                        Search Skills
+                    </label>
+
+                    <input
+                        id="skill-search"
+                        type="search"
+                        name="q"
+                        value="{{ search }}"
+                        placeholder="Search by name or description..."
+                    >
+
+                </div>
+
+                <div class="skill-filters__field">
+
+                    <label for="skill-category">
+                        Category
+                    </label>
+
+                    <select
+                        id="skill-category"
+                        name="category"
+                    >
+
+                        <option value="">
+                            All Categories
+                        </option>
+
+                        {% for category in categories %}
+
+                            <option
+                                value="{{ category.slug }}"
+                                {% if selectedCategory == category.slug %}
+                                    selected
+                                {% endif %}
+                            >
+                                {{ category.name }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="skill-filters__field">
+
+                    <label for="skill-sort">
+                        Sort By
+                    </label>
+
+                    <select
+                        id="skill-sort"
+                        name="sort"
+                    >
+
+                        <option
+                            value="sortOrder"
+                            {% if selectedSort == 'sortOrder' %}
+                                selected
+                            {% endif %}
+                        >
+                            Display Order
+                        </option>
+
+                        <option
+                            value="name"
+                            {% if selectedSort == 'name' %}
+                                selected
+                            {% endif %}
+                        >
+                            Name
+                        </option>
+
+                        <option
+                            value="rating"
+                            {% if selectedSort == 'rating' %}
+                                selected
+                            {% endif %}
+                        >
+                            Rating
+                        </option>
+
+                        <option
+                            value="updatedAt"
+                            {% if selectedSort == 'updatedAt' %}
+                                selected
+                            {% endif %}
+                        >
+                            Recently Updated
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="skill-filters__field">
+
+                    <label for="skill-direction">
+                        Direction
+                    </label>
+
+                    <select
+                        id="skill-direction"
+                        name="direction"
+                    >
+
+                        <option
+                            value="asc"
+                            {% if selectedDirection == 'asc' %}
+                                selected
+                            {% endif %}
+                        >
+                            Ascending
+                        </option>
+
+                        <option
+                            value="desc"
+                            {% if selectedDirection == 'desc' %}
+                                selected
+                            {% endif %}
+                        >
+                            Descending
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="skill-filters__actions">
+
+                    <button
+                        type="submit"
+                        class="btn btn--primary"
+                    >
+                        Apply Filters
+                    </button>
+
+                    <a
+                        href="{{ path('dashboard_skills_index') }}"
+                        class="btn btn--secondary"
+                    >
+                        Reset
+                    </a>
+
+                </div>
+
+            </form>
+
+            {# Active Filters #}
+            {% if search or selectedCategory %}
+
+                <div class="active-filters">
+
+                    <span class="active-filters__label">
+                        Active filters:
+                    </span>
+
+                    {% if search %}
+                        <span class="filter-chip">
+                            Search: "{{ search }}"
+                        </span>
+                    {% endif %}
+
+                    {% if selectedCategory %}
+
+                        {% for category in categories %}
+
+                            {% if category.slug == selectedCategory %}
+                                <span class="filter-chip">
+                                    Category: {{ category.name }}
+                                </span>
+                            {% endif %}
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                    <a
+                        href="{{ path('dashboard_skills_index') }}"
+                        class="filter-chip filter-chip--clear"
+                    >
+                        Clear all
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+        {# Stats #}
+        <section class="dashboard-stats">
+
+            <div class="stat-card">
+                <span class="stat-card__label">
+                    Total Skills
+                </span>
+
+                <strong class="stat-card__value">
+                    {{ totalSkills }}
+                </strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-card__label">
+                    Categories
+                </span>
+
+                <strong class="stat-card__value">
+                    {{ categoryCount }}
+                </strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-card__label">
+                    Average Rating
+                </span>
+
+                <strong class="stat-card__value">
+                    {{ averageRating }}%
+                </strong>
+            </div>
+
+        </section>
+
+        {# Results Header #}
+        <div class="skill-results-header">
+
+            <div class="skill-results-header__summary">
+
+                <strong>
+                    {{ totalSkills }}
+                    {{ totalSkills == 1 ? 'skill' : 'skills' }}
+                </strong>
+
+                {% if search or selectedCategory %}
+                    <span>
+                        matching your filters
+                    </span>
+                {% else %}
+                    <span>
+                        in your portfolio
+                    </span>
+                {% endif %}
+
+            </div>
+
+            {# Display Mode Toggle #}
+            <div class="skill-view-toggle">
+
+                <a
+                    href="{{ path('dashboard_skills_index', {
+                        q: search,
+                        category: selectedCategory,
+                        sort: selectedSort,
+                        direction: selectedDirection,
+                        view: 'cards'
+                    }) }}"
+                    class="view-toggle__button {{ view == 'cards' ? 'is-active' : '' }}"
+                >
+                    Cards
+                </a>
+
+                <a
+                    href="{{ path('dashboard_skills_index', {
+                        q: search,
+                        category: selectedCategory,
+                        sort: selectedSort,
+                        direction: selectedDirection,
+                        view: 'table'
+                    }) }}"
+                    class="view-toggle__button {{ view == 'table' ? 'is-active' : '' }}"
+                >
+                    Table
+                </a>
+
+            </div>
+
+        </div>
+
+        {# Results #}
+        {% if view == 'table' %}
+
+            {% include 'dashboard/skills/_table.html.twig' with {
+                skills: skills
+            } %}
+
+        {% elseif skills is not empty %}
+
+            <section class="skill-grid">
+
+                {% for skill in skills %}
+
+                    {% include 'components/skill-card.html.twig' with {
+                        skill: skill
+                    } %}
+
+                {% endfor %}
+
+            </section>
+
+        {% else %}
+
+            <section class="empty-state">
+
+                <div class="empty-state__icon">
+                    +
+                </div>
+
+                <h2>
+                    No skills found
+                </h2>
+
+                {% if search or selectedCategory %}
+
+                    <p>
+                        No skills match your current search or category
+                        filters. Try adjusting your filters.
+                    </p>
+
+                    <a
+                        href="{{ path('dashboard_skills_index') }}"
+                        class="btn btn--secondary"
+                    >
+                        Clear Filters
+                    </a>
+
+                {% else %}
+
+                    <p>
+                        Add your first technical skill to begin building
+                        your portfolio skill display.
+                    </p>
+
+                    <a
+                        href="{{ path('dashboard_skills_new') }}"
+                        class="btn btn--primary"
+                    >
+                        Add Your First Skill
+                    </a>
+
+                {% endif %}
+
+            </section>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit {{ category.name }}{% endblock %}
+
+{% block body %}
+
+    <main class="dashboard-page">
+
+        <div class="dashboard-container dashboard-container--narrow">
+
+            <div class="dashboard-page__header">
+
+                <div>
+                    <span class="dashboard-page__eyebrow">
+                        AZ Portfolio Symfony
+                    </span>
+
+                    <h1 class="dashboard-page__title">
+                        Edit Category
+                    </h1>
+
+                    <p class="dashboard-page__description">
+                        Update the details for
+                        <strong>{{ category.name }}</strong>.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="dashboard-form-card">
+
+                {{ form_start(form, {
+                    attr: {
+                        class: 'dashboard-form'
+                    }
+                }) }}
+
+                    {{ form_row(form.name) }}
+
+                    {{ form_row(form.slug) }}
+
+                    {{ form_row(form.description) }}
+
+                    {{ form_row(form.sortOrder) }}
+
+                    <div class="dashboard-form__actions">
+
+                        <button
+                            type="submit"
+                            class="btn btn--primary"
+                        >
+                            Save Changes
+                        </button>
+
+                        <a
+                            href="{{ path('dashboard_categories_index') }}"
+                            class="btn btn--secondary"
+                        >
+                            Cancel
+                        </a>
+
+                    </div>
+
+                {{ form_end(form) }}
+
+            </div>
+
+        </div>
+
+    </main>
+
+{% endblock %}

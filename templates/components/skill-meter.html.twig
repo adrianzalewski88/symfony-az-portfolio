@@ -1,0 +1,26 @@
+<div
+    class="skill-meter"
+    data-skill-rating="{{ skill.rating }}"
+    aria-label="{{ skill.name }} rating: {{ skill.rating }} out of 100"
+>
+    <div class="skill-meter__header">
+
+        <span class="skill-meter__name">
+            {{ skill.name }}
+        </span>
+
+        <span class="skill-meter__value">
+            {{ skill.rating }}%
+        </span>
+
+    </div>
+
+    <div class="skill-meter__track">
+
+        <div
+            class="skill-meter__fill"
+            style="--skill-rating: {{ skill.rating }}%;"
+        ></div>
+
+    </div>
+</div>

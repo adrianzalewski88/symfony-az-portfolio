@@ -1,0 +1,185 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories Dashboard{% endblock %}
+
+{% block body %}
+
+    <main class="dashboard-page">
+
+        <div class="dashboard-container">
+
+            <div class="dashboard-page__header">
+
+                <div>
+                    <span class="dashboard-page__eyebrow">
+                        AZ Portfolio Symfony
+                    </span>
+
+                    <h1 class="dashboard-page__title">
+                        Categories
+                    </h1>
+
+                    <p class="dashboard-page__description">
+                        Manage the categories used to organize your skills.
+                    </p>
+                </div>
+
+                <a
+                    href="{{ path('dashboard_categories_new') }}"
+                    class="btn btn--primary"
+                >
+                    Add Category
+                </a>
+
+            </div>
+
+            {% for message in app.flashes('success') %}
+
+                <div class="flash-message flash-message--success">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+            {% if categories is empty %}
+
+                <div class="empty-state">
+
+                    <div class="empty-state__icon">
+                        +
+                    </div>
+
+                    <h2>
+                        No categories yet
+                    </h2>
+
+                    <p>
+                        Create your first category to start organizing
+                        your portfolio skills.
+                    </p>
+
+                    <a
+                        href="{{ path('dashboard_categories_new') }}"
+                        class="btn btn--primary"
+                    >
+                        Create Category
+                    </a>
+
+                </div>
+
+            {% else %}
+
+                <div class="category-table-wrapper">
+
+                    <table class="category-table">
+
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Slug</th>
+                                <th>Description</th>
+                                <th>Sort Order</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for category in categories %}
+
+                                <tr>
+
+                                    <td>
+                                        <div class="category-table__name">
+
+                                            <strong>
+                                                {{ category.name }}
+                                            </strong>
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <span class="category-table__slug">
+                                            {{ category.slug }}
+                                        </span>
+                                    </td>
+
+                                    <td>
+
+                                        {% if category.description %}
+
+                                            <span class="category-table__description">
+                                                {{ category.description|striptags|slice(0, 100) }}
+
+                                                {% if category.description|length > 100 %}
+                                                    …
+                                                {% endif %}
+                                            </span>
+
+                                        {% else %}
+
+                                            <span class="category-table__empty">
+                                                No description
+                                            </span>
+
+                                        {% endif %}
+
+                                    </td>
+
+                                    <td>
+                                        <span class="category-table__order">
+                                            {{ category.sortOrder }}
+                                        </span>
+                                    </td>
+
+                                    <td>
+
+                                        <div class="category-table__actions">
+
+                                            <a
+                                                href="{{ path('dashboard_categories_edit', {
+                                                    id: category.id
+                                                }) }}"
+                                                class="btn btn--small btn--secondary"
+                                            >
+                                                Edit
+                                            </a>
+
+                                            <form
+                                                action="{{ path('dashboard_categories_delete', {
+                                                    id: category.id
+                                                }) }}"
+                                                method="post"
+                                                class="inline-form"
+                                                onsubmit="return confirm('Are you sure you want to delete this category?');"
+                                            >
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn--small btn--danger"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </form>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            {% endif %}
+        
+        </div>
+
+    </main>
+
+{% endblock %}
