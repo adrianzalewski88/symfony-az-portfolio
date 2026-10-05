@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Skill{% endblock %}
+
+{% block body %}
+
+<div class="dashboard-page">
+
+    <div class="dashboard-container dashboard-container--narrow">
+
+        <header class="dashboard-header">
+
+            <div>
+                <span class="dashboard-eyebrow">
+                    AZ Portfolio CMS
+                </span>
+
+                <h1 class="dashboard-title">
+                    Add Skill
+                </h1>
+
+                <p class="dashboard-subtitle">
+                    Add a technical skill to your portfolio.
+                </p>
+            </div>
+
+            <a
+                href="{{ path('dashboard_skills_index') }}"
+                class="btn btn--secondary"
+            >
+                ← Back to Skills
+            </a>
+
+        </header>
+
+        <div class="dashboard-form-card">
+
+            {{ form_start(form, {
+                attr: {
+                    class: 'dashboard-form'
+                }
+            }) }}
+
+                <div class="dashboard-form__grid">
+
+                    <div class="dashboard-form__field dashboard-form__field--full">
+                        {{ form_row(form.name) }}
+                    </div>
+
+                    <div class="dashboard-form__field dashboard-form__field--full">
+                        {{ form_row(form.slug) }}
+                    </div>
+
+                    <div class="dashboard-form__field dashboard-form__field--full">
+                        {{ form_row(form.description) }}
+                    </div>
+
+                    <div class="form-field">
+                        {{ form_row(form.rating) }}
+                    </div>
+
+                    <div class="form-field">
+                        {{ form_row(form.sortOrder) }}
+                    </div>
+
+                    <div class="dashboard-form__field dashboard-form__field--full">
+                        {{ form_row(form.category) }}
+                    </div>
+
+                </div>
+
+                <div class="dashboard-form__actions">
+
+                    <a
+                        href="{{ path('dashboard_skills_index') }}"
+                        class="btn btn--secondary"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn btn--primary"
+                    >
+                        Create Skill
+                    </button>
+
+                </div>
+
+            {{ form_end(form) }}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

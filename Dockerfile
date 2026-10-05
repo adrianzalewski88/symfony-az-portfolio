@@ -34,11 +34,10 @@ RUN docker-php-ext-install -j1 mbstring
 # Apache
 RUN a2enmod rewrite
 
-RUN sed -ri \
-    -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
-    /etc/apache2/sites-available/*.conf \
-    /etc/apache2/apache2.conf \
-    /etc/apache2/conf-available/*.conf
+COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+RUN a2dissite 000-default.conf \
+    && a2ensite 000-default.conf
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

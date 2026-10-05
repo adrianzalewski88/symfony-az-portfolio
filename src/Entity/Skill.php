@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\SkillRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
+#[ORM\Table(name: 'skill')]
+#[ORM\UniqueConstraint(name: 'UNIQ_SKILL_NAME', columns: ['name'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_SKILL_SLUG', columns: ['slug'])]
+
 class Skill
 {
     #[ORM\Id]
@@ -16,20 +19,24 @@ class Skill
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     private ?string $slug = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column]
     #[Assert\Range(min: 0, max: 100)]
-    private ?int $rating = null;
+    private int $rating = 0;
 
     #[ORM\Column]
-    private ?int $sortOrder = null;
+    private int $sortOrder = 0;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -37,8 +44,20 @@ class Skill
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'skills')]
+    #[ORM\ManyToOne(
+        targetEntity: Category::class,
+        inversedBy: 'skills'
+    )]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?Category $category = null;
+
+    public function __construct()
+    {
+        $now = new \DateTimeImmutable();
+
+        $this->createdAt = $now;
+        $this->updatedAt = $now;
+    }
 
     public function getId(): ?int
     {
@@ -81,7 +100,7 @@ class Skill
         return $this;
     }
 
-    public function getRating(): ?int
+    public function getRating(): int
     {
         return $this->rating;
     }
@@ -93,7 +112,7 @@ class Skill
         return $this;
     }
 
-    public function getSortOrder(): ?int
+    public function getSortOrder(): int
     {
         return $this->sortOrder;
     }

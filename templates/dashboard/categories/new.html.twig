@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Category{% endblock %}
+
+{% block body %}
+
+    <main class="dashboard-page">
+
+        <div class="dashboard-container dashboard-container--narrow">
+
+            <div class="dashboard-page__header">
+
+                <div>
+                    <span class="dashboard-page__eyebrow">
+                        AZ Portfolio Symfony
+                    </span>
+
+                    <h1 class="dashboard-page__title">
+                        Add Category
+                    </h1>
+
+                    <p class="dashboard-page__description">
+                        Create a category for organizing your portfolio skills.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="dashboard-form-card">
+
+                {{ form_start(form, {
+                    attr: {
+                        class: 'dashboard-form'
+                    }
+                }) }}
+
+                    {{ form_row(form.name) }}
+
+                    {{ form_row(form.slug) }}
+
+                    {{ form_row(form.description) }}
+
+                    {{ form_row(form.sortOrder) }}
+
+                    <div class="dashboard-form__actions">
+
+                        <button
+                            type="submit"
+                            class="btn btn--primary"
+                        >
+                            Create Category
+                        </button>
+
+                        <a
+                            href="{{ path('dashboard_categories_index') }}"
+                            class="btn btn--secondary"
+                        >
+                            Cancel
+                        </a>
+
+                    </div>
+
+                {{ form_end(form) }}
+
+            </div>
+
+        </div>
+
+    </main>
+
+{% endblock %}
