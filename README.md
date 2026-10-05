@@ -1,6 +1,6 @@
 # Symfony - AZ Portfolio
 
-A production-oriented Symfony portfolio application built to demonstrate modern **PHP/Symfony development, Docker-based infrastructure, RESTful architecture, database integration, Git/GitHub workflows, and CI/CD deployment**.
+A production-oriented Symfony portfolio application built to demonstrate modern **PHP/Symfony development, Docker-based infrastructure, RESTful architecture, database integration, Git/GitHub workflows, and CI/CD deployment**. 
 
 This project is part of my personal developer portfolio and is designed to demonstrate the skills and engineering practices I use as a **Full Stack PHP Developer**.
 
