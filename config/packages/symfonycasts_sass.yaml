@@ -1,3 +1,6 @@
 symfonycasts_sass:
     root_sass:
         - 'assets/styles/app.scss'
+
+    binary: null
+    search_for_binary: false
