@@ -1,7 +1,21 @@
+{% set rating = skill.rating %}
+
+{% if rating == 0 %}
+    {% set ratingState = 'critical' %}
+{% elseif rating < 25 %}
+    {% set ratingState = 'low' %}
+{% elseif rating < 75 %}
+    {% set ratingState = 'medium' %}
+{% elseif rating < 90 %}
+    {% set ratingState = 'high' %}
+{% else %}
+    {% set ratingState = 'excellent' %}
+{% endif %}
+
 <div
     class="skill-meter"
-    data-skill-rating="{{ skill.rating }}"
-    aria-label="{{ skill.name }} rating: {{ skill.rating }} out of 100"
+    data-skill-rating="{{ rating }}"
+    aria-label="{{ skill.name }} rating: {{ rating }} out of 100"
 >
     <div class="skill-meter__header">
 
@@ -10,17 +24,22 @@
         </span>
 
         <span class="skill-meter__value">
-            {{ skill.rating }}%
+            {{ rating }}%
         </span>
 
     </div>
 
-    <div class="skill-meter__track">
-
+    <div
+        class="skill-meter__track"
+        role="progressbar"
+        aria-valuenow="{{ rating }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="{{ skill.name }} proficiency"
+    >
         <div
-            class="skill-meter__fill"
-            style="--skill-rating: {{ skill.rating }}%;"
+            class="skill-meter__fill skill-meter__fill--{{ ratingState }}"
+            style="--skill-rating: {{ rating }}%;"
         ></div>
-
     </div>
 </div>

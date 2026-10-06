@@ -1,0 +1,112 @@
+@use "variables" as v;
+
+.dashboard-stats {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    position: relative;
+
+    padding: 1.35rem;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: v.$radius-xl;
+
+    background: rgba(255, 255, 255, 0.78);
+
+    box-shadow: v.$shadow-sm;
+
+    backdrop-filter: blur(18px);
+
+    transition:
+        transform v.$transition-base,
+        border-color v.$transition-base,
+        box-shadow v.$transition-base;
+}
+
+.stat-card::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    background: v.$primary;
+
+    opacity: 0.06;
+
+    filter: blur(30px);
+
+    content: "";
+}
+
+.stat-card:hover {
+    border-color: v.$border-primary;
+
+    box-shadow:
+        v.$shadow-md,
+        v.$shadow-glow-primary;
+
+    transform: translateY(-3px);
+}
+
+.stat-card__label {
+    position: relative;
+
+    display: block;
+    margin-bottom: 0.5rem;
+
+    color: v.$text-muted;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.stat-card__value {
+    position: relative;
+
+    display: block;
+
+    color: v.$text;
+
+    font-size: 1.8rem;
+    font-weight: 850;
+    letter-spacing: -0.04em;
+}
+
+.stat-card__trend {
+    position: relative;
+
+    display: block;
+    margin-top: 0.35rem;
+
+    color: v.$text-muted;
+
+    font-size: 0.72rem;
+}
+
+@media (max-width: 1100px) {
+    .dashboard-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+}

@@ -33,6 +33,7 @@ class Category
     private ?string $slug = null;
 
     #[ORM\Column]
+    #[Assert\PositiveOrZero]
     private int $sortOrder = 0;
 
     #[ORM\Column]

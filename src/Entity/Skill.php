@@ -36,6 +36,7 @@ class Skill
     private int $rating = 0;
 
     #[ORM\Column]
+    #[Assert\PositiveOrZero]
     private int $sortOrder = 0;
 
     #[ORM\Column]

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="app-shell">
+
+        {% include 'components/dashboard-sidebar.html.twig' %}
+
+        <div class="app-main">
+
+            <main class="app-content">
+
+                {% include 'components/dashboard-header.html.twig' %}
+
+                <div class="dashboard">
+
+                    <div class="dashboard__content">
+
+                        {% block dashboard_content %}
+                        {% endblock %}
+
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+{% endblock %}

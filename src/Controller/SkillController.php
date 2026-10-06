@@ -17,6 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class SkillController extends AbstractController
 {
     #[Route('', name: 'dashboard_skills_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(
         Request $request,
         SkillRepository $skillRepository,
@@ -143,6 +144,7 @@ class SkillController extends AbstractController
         name: 'dashboard_skills_new',
         methods: ['GET', 'POST']
     )]
+    #[IsGranted('ROLE_EDITOR')]
     public function new(
         Request $request,
         EntityManagerInterface $entityManager
@@ -187,6 +189,7 @@ class SkillController extends AbstractController
         name: 'dashboard_skills_edit',
         methods: ['GET', 'POST']
     )]
+    #[IsGranted('ROLE_EDITOR')]
     public function edit(
         Skill $skill,
         Request $request,
@@ -233,10 +236,19 @@ class SkillController extends AbstractController
         name: 'dashboard_skills_delete',
         methods: ['POST']
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         Skill $skill,
+        Request $request,
         EntityManagerInterface $entityManager
     ): Response {
+        if (!$this->isCsrfTokenValid(
+            'delete_skill_' . $skill->getId(),
+            $request->request->get('_token')
+        )) {
+            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        }
+
         $entityManager->remove($skill);
         $entityManager->flush();
 

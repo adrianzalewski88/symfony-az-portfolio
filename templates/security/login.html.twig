@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Sign In | AZ Portfolio Symfony
+{% endblock %}
+
+{% block body %}
+
+    <main class="auth-page">
+
+        <div class="auth-page__background auth-page__background--primary"></div>
+        <div class="auth-page__background auth-page__background--secondary"></div>
+
+        <section class="auth-card">
+
+            <div class="auth-card__brand">
+
+                <div class="auth-card__logo">
+                    AZ
+                </div>
+
+                <div>
+                    <span class="auth-card__brand-name">
+                        AZ Portfolio
+                    </span>
+
+                    <span class="auth-card__brand-subtitle">
+                        Symfony CMS
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="auth-card__header">
+
+                <span class="auth-card__eyebrow">
+                    Dashboard Access
+                </span>
+
+                <h1>
+                    Welcome back
+                </h1>
+
+                <p>
+                    Sign in to manage your portfolio.
+                </p>
+
+            </div>
+
+            {% if error %}
+
+                <div class="auth-alert auth-alert--error">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+
+            {% endif %}
+
+            <form
+                method="post"
+                action="{{ path('app_login') }}"
+                class="auth-form"
+            >
+
+                <div class="auth-form__field">
+
+                    <label for="username">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="username"
+                        name="_username"
+                        value="{{ last_username }}"
+                        autocomplete="email"
+                        placeholder="you@example.com"
+                        required
+                        autofocus
+                    >
+
+                </div>
+
+                <div class="auth-form__field">
+
+                    <div class="auth-form__label-row">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                    </div>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="_password"
+                        autocomplete="current-password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+                <input
+                    type="hidden"
+                    name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+
+                <button
+                    type="submit"
+                    class="btn btn--primary auth-form__submit"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+            <div class="auth-card__footer">
+
+                <span>
+                    AZ Portfolio Symfony
+                </span>
+
+                <span class="auth-card__footer-divider">
+                    •
+                </span>
+
+                <span>
+                    Secure Dashboard
+                </span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+{% endblock %}

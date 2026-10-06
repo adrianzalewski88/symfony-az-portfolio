@@ -1,0 +1,339 @@
+@use "variables" as v;
+
+
+/* =========================================================
+   Category Results
+   ========================================================= */
+
+.category-results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-bottom: 1rem;
+}
+
+.category-results-header__summary {
+    display: flex;
+    align-items: baseline;
+
+    gap: 0.4rem;
+}
+
+.category-results-header__summary strong {
+    color: v.$text;
+
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.category-results-header__summary span {
+    color: v.$text-muted;
+
+    font-size: 0.72rem;
+}
+
+
+/* =========================================================
+   Category Grid
+   ========================================================= */
+
+.category-grid {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 1rem;
+}
+
+
+/* =========================================================
+   Category Card
+   ========================================================= */
+
+.category-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 260px;
+
+    padding: 1.35rem;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: v.$radius-xl;
+
+    background: rgba(255, 255, 255, 0.86);
+
+    box-shadow: v.$shadow-sm;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    transition:
+        transform v.$transition-base,
+        border-color v.$transition-base,
+        box-shadow v.$transition-base;
+}
+
+.category-card::before {
+    position: absolute;
+
+    top: -50px;
+    right: -50px;
+
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    background: v.$secondary;
+
+    opacity: 0.045;
+
+    filter: blur(30px);
+
+    pointer-events: none;
+
+    content: "";
+}
+
+.category-card:hover {
+    border-color: rgba(v.$secondary, 0.2);
+
+    box-shadow:
+        v.$shadow-md,
+        0 0 30px rgba(v.$secondary, 0.08);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   Category Header
+   ========================================================= */
+
+.category-card__header {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-bottom: 0.9rem;
+}
+
+.category-card__identity {
+    min-width: 0;
+}
+
+.category-card__eyebrow {
+    display: block;
+
+    margin-bottom: 0.45rem;
+
+    color: v.$secondary;
+
+    font-size: 0.62rem;
+    font-weight: 800;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+}
+
+.category-card__name {
+    margin: 0;
+
+    color: v.$text;
+
+    font-size: 1.1rem;
+    font-weight: 800;
+
+    line-height: 1.25;
+
+    letter-spacing: -0.02em;
+}
+
+.category-card__order {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 32px;
+    min-height: 26px;
+
+    padding: 0.25rem 0.5rem;
+
+    border: 1px solid rgba(v.$secondary, 0.15);
+    border-radius: v.$radius-pill;
+
+    color: v.$secondary;
+
+    font-size: 0.62rem;
+    font-weight: 800;
+
+    background: rgba(v.$secondary, 0.06);
+}
+
+
+/* =========================================================
+   Category Meta
+   ========================================================= */
+
+.category-card__meta {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 0.75rem;
+
+    margin-bottom: 1rem;
+}
+
+.category-card__slug {
+    overflow: hidden;
+
+    max-width: 65%;
+
+    color: v.$text-muted;
+
+    font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace;
+
+    font-size: 0.68rem;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.category-card__count {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 26px;
+
+    padding: 0.3rem 0.55rem;
+
+    border-radius: v.$radius-pill;
+
+    color: v.$primary;
+
+    font-size: 0.65rem;
+    font-weight: 800;
+
+    background: rgba(v.$primary, 0.06);
+}
+
+
+/* =========================================================
+   Category Description
+   ========================================================= */
+
+.category-card__description {
+    position: relative;
+    z-index: 1;
+
+    display: -webkit-box;
+
+    margin: 0 0 1.5rem;
+
+    overflow: hidden;
+
+    color: v.$text-muted;
+
+    font-size: 0.76rem;
+    line-height: 1.6;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+
+.category-card__description--empty {
+    font-style: italic;
+    opacity: 0.75;
+}
+
+
+/* =========================================================
+   Category Footer
+   ========================================================= */
+
+.category-card__footer {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 0.4rem;
+
+    margin-top: auto;
+
+    padding-top: 0.9rem;
+
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.category-card__footer .inline-form {
+    margin: 0;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .category-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .category-results-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .category-results-header .btn {
+        width: 100%;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-card {
+        min-height: 0;
+    }
+
+}

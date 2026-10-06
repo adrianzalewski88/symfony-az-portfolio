@@ -1,0 +1,103 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}Add User | AZ Portfolio{% endblock %}
+
+{% block dashboard_content %}
+
+    <div class="dashboard-page-header">
+        <div class="dashboard-page-header__content">
+            <span class="dashboard-page-header__eyebrow">
+                Administration
+            </span>
+
+            <h1 class="dashboard-page-header__title">
+                Add User
+            </h1>
+
+            <p class="dashboard-page-header__description">
+                Create a new account for the AZ Portfolio dashboard.
+            </p>
+        </div>
+
+        <div class="dashboard-page-header__actions">
+            <a
+                href="{{ path('dashboard_users_index') }}"
+                class="btn btn--secondary"
+            >
+                ← Back to Users
+            </a>
+        </div>
+    </div>
+
+    <section class="dashboard-form-card user-form-card">
+
+        <div class="user-form-card__header">
+            <h2>Create Dashboard Account</h2>
+
+            <p>
+                Configure the user's identity, permissions, password, and account status.
+            </p>
+        </div>
+
+        {{ form_start(form, {
+            attr: {
+                class: 'dashboard-form'
+            }
+        }) }}
+
+            <div class="dashboard-form__grid">
+
+                <div class="dashboard-form__field">
+                    {{ form_row(form.firstName) }}
+                </div>
+
+                <div class="dashboard-form__field">
+                    {{ form_row(form.lastName) }}
+                </div>
+
+                <div class="dashboard-form__field dashboard-form__field--full">
+                    {{ form_row(form.email) }}
+                </div>
+
+                <div class="dashboard-form__field">
+                    {{ form_row(form.role) }}
+                </div>
+
+                <div class="dashboard-form__field">
+                    {{ form_row(form.password) }}
+                </div>
+
+                <div class="dashboard-form__field dashboard-form__field--full">
+                    <div class="user-form-status">
+                        {{ form_widget(form.isActive) }}
+                        {{ form_label(form.isActive) }}
+                    </div>
+
+                    {{ form_errors(form.isActive) }}
+                </div>
+
+            </div>
+
+            <div class="dashboard-form__actions">
+
+                <a
+                    href="{{ path('dashboard_users_index') }}"
+                    class="btn btn--secondary"
+                >
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn--primary"
+                >
+                    Create User
+                </button>
+
+            </div>
+
+        {{ form_end(form) }}
+
+    </section>
+
+{% endblock %}
