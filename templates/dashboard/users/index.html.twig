@@ -1,0 +1,162 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}Users | AZ Portfolio{% endblock %}
+
+{% block dashboard_content %}
+
+    <div class="page-header">
+        <div>
+            <span class="page-header__eyebrow">Administration</span>
+            <h1 class="page-header__title">Users</h1>
+            <p class="page-header__description">
+                Manage dashboard accounts, roles, and access permissions.
+            </p>
+        </div>
+
+        <div class="page-header__actions">
+            <a href="{{ path('dashboard_users_new') }}" class="btn btn--primary">
+                <span>+</span>
+                Add User
+            </a>
+        </div>
+    </div>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert--success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert--danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <section class="users-panel">
+
+        <div class="users-panel__header">
+            <div>
+                <h2 class="users-panel__title">Dashboard Accounts</h2>
+                <p class="users-panel__description">
+                    {{ users|length }} {{ users|length == 1 ? 'account' : 'accounts' }}
+                </p>
+            </div>
+        </div>
+
+        {% if users is not empty %}
+
+            <div class="users-table-wrapper">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Last Login</th>
+                            <th class="users-table__actions">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+
+                                <td>
+                                    <div class="user-table__identity">
+                                        <div class="user-table__avatar">
+                                            {{ user.firstName|first|upper }}{{ user.lastName|first|upper }}
+                                        </div>
+
+                                        <div>
+                                            <strong>
+                                                {{ user.firstName }} {{ user.lastName }}
+                                            </strong>
+
+                                            <span>
+                                                Created
+                                                {{ user.createdAt|date('M j, Y') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    {{ user.email }}
+                                </td>
+
+                                <td>
+                                    {% if 'ROLE_ADMIN' in user.roles %}
+                                        <span class="badge badge--primary">
+                                            Administrator
+                                        </span>
+                                    {% elseif 'ROLE_EDITOR' in user.roles %}
+                                        <span class="badge badge--secondary">
+                                            Editor
+                                        </span>
+                                    {% else %}
+                                        <span class="badge badge--neutral">
+                                            Viewer
+                                        </span>
+                                    {% endif %}
+                                </td>
+
+                                <td>
+                                    {% if user.isActive %}
+                                        <span class="badge badge--success">
+                                            Active
+                                        </span>
+                                    {% else %}
+                                        <span class="badge badge--danger">
+                                            Inactive
+                                        </span>
+                                    {% endif %}
+                                </td>
+
+                                <td>
+                                    {% if user.lastLoginAt %}
+                                        {{ user.lastLoginAt|date('M j, Y g:i A') }}
+                                    {% else %}
+                                        <span class="u-text-muted">
+                                            Never
+                                        </span>
+                                    {% endif %}
+                                </td>
+
+                                <td class="users-table__actions">
+                                    <a
+                                        href="{{ path('dashboard_users_edit', { id: user.id }) }}"
+                                        class="btn btn--small btn--secondary"
+                                    >
+                                        Edit
+                                    </a>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        {% else %}
+
+            <div class="empty-state">
+                <div class="empty-state__icon">👤</div>
+
+                <h3>No users yet</h3>
+
+                <p>
+                    Create your first dashboard account to get started.
+                </p>
+
+                <a href="{{ path('dashboard_users_new') }}" class="btn btn--primary">
+                    Add User
+                </a>
+            </div>
+
+        {% endif %}
+
+    </section>
+
+{% endblock %}

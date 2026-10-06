@@ -1,0 +1,364 @@
+@use "variables" as v;
+
+/* =========================================================
+   Skills Results
+   ========================================================= */
+
+.skill-results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.skill-results-header__summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+}
+
+.skill-results-header__summary strong {
+    color: v.$text;
+
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.skill-results-header__summary span {
+    color: v.$text-muted;
+
+    font-size: 0.72rem;
+}
+
+
+/* =========================================================
+   View Toggle
+   ========================================================= */
+
+.skill-view-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+
+    padding: 0.25rem;
+
+    border: 1px solid v.$border;
+    border-radius: v.$radius-md;
+
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.view-toggle__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 32px;
+    padding: 0.4rem 0.7rem;
+
+    border-radius: 0.45rem;
+
+    color: v.$text-muted;
+
+    font-size: 0.68rem;
+    font-weight: 750;
+
+    transition:
+        color v.$transition-fast,
+        background v.$transition-fast;
+}
+
+.view-toggle__button:hover {
+    color: v.$text;
+
+    background: rgba(15, 23, 42, 0.05);
+}
+
+.view-toggle__button.is-active {
+    color: v.$primary;
+
+    background: rgba(v.$primary, 0.08);
+
+    box-shadow:
+        0 1px 4px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   Skill Grid
+   ========================================================= */
+
+.skill-grid {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 1rem;
+}
+
+
+/* =========================================================
+   Skill Cards
+   ========================================================= */
+
+.skill-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 250px;
+
+    padding: 1.35rem;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: v.$radius-xl;
+
+    background: rgba(255, 255, 255, 0.86);
+
+    box-shadow: v.$shadow-sm;
+
+    backdrop-filter: blur(18px);
+
+    transition:
+        transform v.$transition-base,
+        border-color v.$transition-base,
+        box-shadow v.$transition-base;
+}
+
+.skill-card::before {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    background: v.$primary;
+
+    opacity: 0.045;
+
+    filter: blur(30px);
+
+    pointer-events: none;
+
+    content: "";
+}
+
+.skill-card:hover {
+    border-color: rgba(v.$primary, 0.2);
+
+    box-shadow:
+        v.$shadow-md,
+        0 0 30px rgba(v.$primary, 0.08);
+
+    transform: translateY(-3px);
+}
+
+
+/* ---------------------------------------------------------
+   Header
+   --------------------------------------------------------- */
+
+.skill-card__header {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-bottom: 0.85rem;
+}
+
+.skill-card__header > div {
+    min-width: 0;
+}
+
+.skill-card__name {
+    margin: 0 0 0.35rem;
+
+    color: v.$text;
+
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.25;
+
+    letter-spacing: -0.02em;
+}
+
+.skill-card__category {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 24px;
+
+    padding: 0.25rem 0.55rem;
+
+    border: 1px solid rgba(v.$primary, 0.16);
+    border-radius: v.$radius-pill;
+
+    color: v.$primary;
+
+    font-size: 0.62rem;
+    font-weight: 750;
+    line-height: 1;
+
+    background: rgba(v.$primary, 0.06);
+}
+
+
+/* ---------------------------------------------------------
+   Description
+   --------------------------------------------------------- */
+
+.skill-card__description {
+    position: relative;
+    z-index: 1;
+
+    display: -webkit-box;
+
+    margin: 0 0 1.5rem;
+
+    overflow: hidden;
+
+    color: v.$text-muted;
+
+    font-size: 0.76rem;
+    line-height: 1.6;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+
+.skill-card__footer {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+
+    margin-top: auto;
+}
+
+
+/* ---------------------------------------------------------
+   Actions
+   --------------------------------------------------------- */
+
+.skill-card__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 0.4rem;
+
+    padding-top: 0.9rem;
+
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.skill-card__actions .inline-form {
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    .skill-card {
+        min-height: 0;
+    }
+}
+
+
+/* =========================================================
+   Empty State
+   ========================================================= */
+
+.empty-state {
+    padding: 4rem 2rem;
+
+    border: 1px dashed rgba(15, 23, 42, 0.15);
+    border-radius: v.$radius-xl;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.empty-state__icon {
+    display: grid;
+    place-items: center;
+
+    width: 52px;
+    height: 52px;
+
+    margin: 0 auto 1rem;
+
+    border-radius: 50%;
+
+    color: v.$primary;
+
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    background: rgba(v.$primary, 0.08);
+}
+
+.empty-state h2 {
+    margin-bottom: 0.4rem;
+
+    color: v.$text;
+
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.empty-state p {
+    max-width: 440px;
+
+    margin: 0 auto 1.25rem;
+
+    color: v.$text-muted;
+
+    font-size: 0.78rem;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    .skill-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .skill-results-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+}

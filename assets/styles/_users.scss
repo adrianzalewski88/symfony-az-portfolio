@@ -1,0 +1,472 @@
+@use "variables" as v;
+
+/* =========================================================
+   User CMS
+   ========================================================= */
+
+.users-panel {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: v.$radius-xl;
+
+    background: rgba(255, 255, 255, 0.86);
+
+    box-shadow: v.$shadow-sm;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.users-panel::before {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background: v.$primary;
+
+    opacity: 0.035;
+
+    filter: blur(55px);
+
+    pointer-events: none;
+
+    content: "";
+}
+
+
+/*
+ * Panel Header
+ */
+
+.users-panel__header {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding: 1.25rem 1.5rem;
+
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.users-panel__title {
+    margin: 0;
+
+    color: v.$text;
+
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.users-panel__description {
+    margin: 0.25rem 0 0;
+
+    color: v.$text-muted;
+
+    font-size: 0.72rem;
+}
+
+
+/*
+ * User Table
+ */
+
+.users-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.users-table {
+    width: 100%;
+
+    min-width: 780px;
+
+    border-collapse: collapse;
+}
+
+.users-table thead {
+    background: rgba(15, 23, 42, 0.025);
+}
+
+.users-table th {
+    padding: 0.8rem 1rem;
+
+    border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+
+    color: v.$text-muted;
+
+    font-size: 0.65rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.users-table td {
+    padding: 1rem;
+
+    border-bottom: 1px solid rgba(15, 23, 42, 0.055);
+
+    color: v.$text;
+
+    font-size: 0.76rem;
+
+    vertical-align: middle;
+}
+
+.users-table tbody tr {
+    transition:
+        background v.$transition-fast,
+        box-shadow v.$transition-fast;
+}
+
+.users-table tbody tr:hover {
+    background: rgba(v.$primary, 0.025);
+}
+
+.users-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/*
+ * User Identity
+ */
+
+.user-table__identity {
+    display: flex;
+    align-items: center;
+
+    gap: 0.8rem;
+
+    min-width: 220px;
+}
+
+.user-table__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 40px;
+
+    width: 40px;
+    height: 40px;
+
+    color: v.$white;
+
+    background:
+        linear-gradient(
+            135deg,
+            v.$primary,
+            v.$secondary
+        );
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 0 0 4px rgba(v.$primary, 0.07),
+        0 8px 20px rgba(v.$primary, 0.14);
+
+    font-size: 0.68rem;
+    font-weight: 850;
+
+    letter-spacing: 0.04em;
+}
+
+.user-table__identity strong {
+    display: block;
+
+    margin: 0;
+
+    color: v.$text;
+
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.user-table__identity span {
+    display: block;
+
+    margin-top: 0.15rem;
+
+    color: v.$text-muted;
+
+    font-size: 0.66rem;
+}
+
+
+/*
+ * Role / Status Badges
+ */
+
+.badge--primary {
+    color: v.$primary;
+
+    background: rgba(v.$primary, 0.08);
+
+    border-color: rgba(v.$primary, 0.15);
+}
+
+.badge--secondary {
+    color: v.$secondary;
+
+    background: rgba(v.$secondary, 0.08);
+
+    border-color: rgba(v.$secondary, 0.15);
+}
+
+.badge--neutral {
+    color: v.$text-muted;
+
+    background: rgba(100, 116, 139, 0.08);
+
+    border-color: rgba(100, 116, 139, 0.14);
+}
+
+.badge--success {
+    color: #15803D;
+
+    background: rgba(v.$success, 0.09);
+
+    border-color: rgba(v.$success, 0.17);
+}
+
+.badge--danger {
+    color: #B91C1C;
+
+    background: rgba(v.$danger, 0.08);
+
+    border-color: rgba(v.$danger, 0.16);
+}
+
+
+/*
+ * Table Actions
+ */
+
+.users-table__actions {
+    width: 1%;
+
+    white-space: nowrap;
+
+    text-align: right;
+}
+
+
+/*
+ * Empty State
+ */
+
+.empty-state {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 4rem 2rem;
+
+    text-align: center;
+}
+
+.empty-state__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 4rem;
+    height: 4rem;
+
+    margin-bottom: 1rem;
+
+    border: 1px solid rgba(v.$primary, 0.12);
+    border-radius: v.$radius-xl;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(v.$primary, 0.10),
+            rgba(v.$secondary, 0.10)
+        );
+
+    font-size: 1.5rem;
+}
+
+.empty-state h3 {
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    max-width: 32rem;
+
+    margin-bottom: 1.5rem;
+}
+
+
+/*
+ * User Form Card
+ *
+ * The actual form controls intentionally use the
+ * existing .dashboard-form system from _forms.scss.
+ */
+
+.user-form-card {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    padding: 1.75rem;
+
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: v.$radius-xl;
+
+    background: rgba(255, 255, 255, 0.86);
+
+    box-shadow: v.$shadow-sm;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.user-form-card::before {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background: v.$secondary;
+
+    opacity: 0.035;
+
+    filter: blur(45px);
+
+    pointer-events: none;
+
+    content: "";
+}
+
+.user-form-card__header {
+    position: relative;
+
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.user-form-card__header h2 {
+    margin: 0 0 0.3rem;
+
+    color: v.$text;
+
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.user-form-card__header p {
+    margin: 0;
+
+    color: v.$text-muted;
+
+    font-size: 0.72rem;
+    line-height: 1.6;
+}
+
+
+/*
+ * Account Status
+ */
+
+.user-form-status {
+    display: flex;
+    align-items: center;
+
+    gap: 0.75rem;
+
+    min-height: 44px;
+
+    padding: 0.7rem 0.9rem;
+
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: v.$radius-md;
+
+    background: rgba(248, 250, 252, 0.75);
+}
+
+.user-form-status input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+
+    margin: 0;
+
+    accent-color: v.$primary;
+
+    cursor: pointer;
+}
+
+.user-form-status label {
+    margin: 0;
+
+    color: v.$text;
+
+    font-size: 0.75rem;
+    font-weight: 750;
+
+    cursor: pointer;
+}
+
+
+/*
+ * Responsive
+ */
+
+@media (max-width: 768px) {
+    .users-panel {
+        border-radius: v.$radius-lg;
+    }
+
+    .users-panel__header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        padding: 1.1rem 1.25rem;
+    }
+
+    .user-form-card {
+        padding: 1.25rem;
+    }
+
+    .users-table {
+        min-width: 760px;
+    }
+}
+
+@media (max-width: 640px) {
+    .user-form-card {
+        padding: 1rem;
+    }
+
+    .empty-state {
+        padding: 3rem 1.25rem;
+    }
+}

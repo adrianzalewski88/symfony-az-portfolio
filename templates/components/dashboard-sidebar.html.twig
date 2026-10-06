@@ -1,0 +1,135 @@
+<aside class="dashboard-sidebar">
+
+    {# Brand / Homepage #}
+    <div class="dashboard-sidebar__brand">
+        <a
+            href="{{ path('app_home') }}"
+            class="dashboard-sidebar__logo"
+            aria-label="Go to homepage"
+        >
+            AZ
+        </a>
+
+        <div class="dashboard-sidebar__brand-text">
+            <a
+                href="{{ path('app_home') }}"
+                class="dashboard-sidebar__brand-title"
+            >
+                AZ Portfolio
+            </a>
+
+            <span class="dashboard-sidebar__brand-subtitle">
+                Symfony
+            </span>
+        </div>
+    </div>
+
+    {# Main Navigation #}
+    <nav class="dashboard-sidebar__nav" aria-label="Dashboard navigation">
+
+        <span class="dashboard-sidebar__section">
+            Main
+        </span>
+
+        <a
+            href="{{ path('app_home') }}"
+            class="dashboard-sidebar__link"
+        >
+            <span class="dashboard-sidebar__icon">
+                🏠
+            </span>
+
+            <span class="dashboard-sidebar__label">
+                Homepage
+            </span>
+        </a>
+
+        <a
+            href="{{ path('dashboard') }}"
+            class="dashboard-sidebar__link"
+        >
+            <span class="dashboard-sidebar__icon">
+                ▣
+            </span>
+
+            <span class="dashboard-sidebar__label">
+                Dashboard
+            </span>
+        </a>
+
+        <a
+            href="{{ path('dashboard_skills_index') }}"
+            class="dashboard-sidebar__link"
+        >
+            <span class="dashboard-sidebar__icon">
+                ⚙
+            </span>
+
+            <span class="dashboard-sidebar__label">
+                Skills
+            </span>
+        </a>
+
+        <a
+            href="{{ path('dashboard_categories_index') }}"
+            class="dashboard-sidebar__link"
+        >
+            <span class="dashboard-sidebar__icon">
+                ◈
+            </span>
+
+            <span class="dashboard-sidebar__label">
+                Categories
+            </span>
+        </a>
+
+        <a
+            href="{{ path('dashboard_users_index') }}"
+            class="dashboard-sidebar__link"
+        >
+            <span class="dashboard-sidebar__icon">
+                👥
+            </span>
+
+            <span class="dashboard-sidebar__label">
+                Users
+            </span>
+        </a>
+
+    </nav>
+
+    {# Sidebar Footer #}
+    <div class="dashboard-sidebar__footer">
+
+        <div class="dashboard-sidebar__user">
+            <div class="dashboard-sidebar__avatar">
+                {{ app.user.email|first|upper }}
+            </div>
+
+            <div class="dashboard-sidebar__user-info">
+                <span class="dashboard-sidebar__user-name">
+                    {{ app.user.email }}
+                </span>
+
+                <span class="dashboard-sidebar__user-role">
+                    Administrator
+                </span>
+            </div>
+        </div>
+
+        <a
+            href="{{ path('app_logout') }}"
+            class="dashboard-sidebar__link dashboard-sidebar__logout"
+        >
+            <span class="dashboard-sidebar__icon">
+                ⇥
+            </span>
+
+            <span class="dashboard-sidebar__label">
+                Logout
+            </span>
+        </a>
+
+    </div>
+
+</aside>

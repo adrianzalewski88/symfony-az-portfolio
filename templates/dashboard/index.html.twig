@@ -1,0 +1,189 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}
+    Dashboard | AZ Portfolio Symfony
+{% endblock %}
+
+{% block dashboard_content %}
+
+    {# Dashboard Statistics #}
+    <section class="dashboard-stats">
+
+        <article class="stat-card">
+
+            <span class="stat-card__label">
+                Technical Skills
+            </span>
+
+            <strong class="stat-card__value">
+                —
+            </strong>
+
+            <span class="stat-card__trend">
+                Portfolio competency library
+            </span>
+
+        </article>
+
+
+        <article class="stat-card">
+
+            <span class="stat-card__label">
+                Categories
+            </span>
+
+            <strong class="stat-card__value">
+                —
+            </strong>
+
+            <span class="stat-card__trend">
+                Organized skill groups
+            </span>
+
+        </article>
+
+
+        <article class="stat-card">
+
+            <span class="stat-card__label">
+                Architecture
+            </span>
+
+            <strong class="stat-card__value">
+                Symfony
+            </strong>
+
+            <span class="stat-card__trend">
+                PHP application platform
+            </span>
+
+        </article>
+
+
+        <article class="stat-card">
+
+            <span class="stat-card__label">
+                Environment
+            </span>
+
+            <strong class="stat-card__value">
+                Docker
+            </strong>
+
+            <span class="stat-card__trend">
+                Containerized development
+            </span>
+
+        </article>
+
+    </section>
+
+
+    {# Dashboard Management Cards #}
+    <section class="dashboard-grid">
+
+        <article class="dashboard-card">
+
+            <div class="dashboard-card__header">
+
+                <div>
+
+                    <span class="dashboard-card__eyebrow">
+                        Content Management
+                    </span>
+
+                    <h2>
+                        Skills
+                    </h2>
+
+                </div>
+
+                <a
+                    href="{{ path('dashboard_skills_index') }}"
+                    class="btn btn--secondary btn--small"
+                >
+                    Manage
+                </a>
+
+            </div>
+
+            <p>
+                Manage technical competencies, proficiency ratings,
+                categories, descriptions, and display order.
+            </p>
+
+        </article>
+
+
+        <article class="dashboard-card">
+
+            <div class="dashboard-card__header">
+
+                <div>
+
+                    <span class="dashboard-card__eyebrow">
+                        Organization
+                    </span>
+
+                    <h2>
+                        Categories
+                    </h2>
+
+                </div>
+
+                <a
+                    href="{{ path('dashboard_categories_index') }}"
+                    class="btn btn--secondary btn--small"
+                >
+                    Manage
+                </a>
+
+            </div>
+
+            <p>
+                Organize portfolio skills into structured technical
+                competency groups.
+            </p>
+
+        </article>
+
+
+        <article class="dashboard-card dashboard-card--wide">
+
+            <span class="dashboard-card__eyebrow">
+                Application Architecture
+            </span>
+
+            <h2>
+                Symfony Portfolio Platform
+            </h2>
+
+            <p>
+                This dashboard is backed by Symfony controllers,
+                Doctrine entities and repositories, Twig templates,
+                Sass, MySQL, Docker, and GitHub Actions deployment.
+            </p>
+
+            <div class="architecture-flow">
+
+                <span>Browser</span>
+
+                <span>→</span>
+
+                <span>Symfony</span>
+
+                <span>→</span>
+
+                <span>Doctrine</span>
+
+                <span>→</span>
+
+                <span>MySQL</span>
+
+            </div>
+
+        </article>
+
+    </section>
+
+{% endblock %}

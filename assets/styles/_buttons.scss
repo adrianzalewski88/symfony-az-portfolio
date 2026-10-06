@@ -1,0 +1,76 @@
+@use "variables" as v;
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    min-height: 42px;
+    padding: 0.65rem 1rem;
+
+    border: 1px solid transparent;
+    border-radius: v.$radius-md;
+
+    font-size: 0.8rem;
+    font-weight: 750;
+
+    text-decoration: none;
+
+    transition:
+        transform v.$transition-fast,
+        box-shadow v.$transition-fast,
+        background v.$transition-fast,
+        border-color v.$transition-fast;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn--primary {
+    color: v.$white;
+
+    background:
+        linear-gradient(
+            135deg,
+            v.$primary,
+            v.$secondary
+        );
+
+    box-shadow:
+        0 8px 24px rgba(v.$primary, 0.2);
+}
+
+.btn--primary:hover {
+    box-shadow:
+        0 12px 30px rgba(v.$primary, 0.3);
+}
+
+.btn--secondary {
+    color: v.$text;
+
+    border-color: v.$border;
+
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.btn--secondary:hover {
+    border-color: v.$border-primary;
+    background: v.$white;
+}
+
+.btn--danger {
+    color: v.$danger;
+
+    border-color: rgba(v.$danger, 0.2);
+
+    background: rgba(v.$danger, 0.06);
+}
+
+.btn--small {
+    min-height: 34px;
+    padding: 0.45rem 0.7rem;
+
+    font-size: 0.72rem;
+}

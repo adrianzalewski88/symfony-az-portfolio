@@ -1,0 +1,500 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Adrian Zalewski | Senior Full Stack PHP Developer
+{% endblock %}
+
+{% block body %}
+
+    <main class="portfolio-home">
+
+        {# ============================================================
+           Hero
+           ============================================================ #}
+        <section class="hero">
+
+            <div class="hero__overlay"></div>
+
+            <div class="hero__content">
+
+                <div class="hero__portrait">
+                    {# Replace with your actual portrait filename #}
+                    <img
+                        src="{{ asset('images/portfolio-owner-picture.jpg') }}"
+                        alt="Adrian Zalewski, Senior Full Stack PHP Developer"
+                    >
+                </div>
+
+                <div class="hero__intro">
+
+                    <span class="hero__eyebrow">
+                        AZ Portfolio
+                    </span>
+
+                    <h1>
+                        Adrian Zalewski
+                    </h1>
+
+                    <h2>
+                        Senior Full Stack PHP Developer
+                    </h2>
+
+                    <p class="hero__description">
+                        I build modern, scalable web applications and content-driven
+                        platforms using PHP, Symfony, Laravel, React, Drupal,
+                        WordPress, APIs, Docker, and CI/CD.
+                    </p>
+
+                    <p class="hero__description">
+                        Explore my core competencies and the five portfolio
+                        applications I've built to demonstrate different approaches
+                        to modern web development.
+                    </p>
+
+                    <div class="hero__actions">
+
+                        <a
+                            href="#skills"
+                            class="btn btn--primary"
+                        >
+                            Explore My Core Competencies
+                        </a>
+
+                        <a
+                            href="https://github.com/adrianzalewski88"
+                            class="btn btn--secondary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/adrian-zalewski-1988-fa/"
+                            class="btn btn--secondary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LinkedIn
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {# ============================================================
+           Five Portfolio Applications
+           ============================================================ #}
+        <section class="portfolio-showcase">
+
+            <div class="portfolio-showcase__header">
+
+                <span class="section-eyebrow">
+                    Portfolio Architecture
+                </span>
+
+                <h2>
+                    One Developer. Five Approaches.
+                </h2>
+
+                <p>
+                    This portfolio is represented across five applications,
+                    each demonstrating a different approach to building and
+                    delivering modern websites and web applications.
+                </p>
+
+            </div>
+
+            <div class="portfolio-showcase__grid">
+
+                <article class="portfolio-project-card">
+
+                    <span class="portfolio-project-card__number">
+                        01
+                    </span>
+
+                    <h3>
+                        Symfony Portfolio
+                    </h3>
+
+                    <p>
+                        This Symfony application demonstrates modern PHP
+                        development with Symfony, Doctrine, Twig, Docker,
+                        authentication, and a database-driven CMS.
+                    </p>
+
+                    <a
+                        href="https://symfony.adrian-zalewski.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Explore Symfony →
+                    </a>
+
+                </article>
+
+
+                <article class="portfolio-project-card">
+
+                    <span class="portfolio-project-card__number">
+                        02
+                    </span>
+
+                    <h3>
+                        React Portfolio
+                    </h3>
+
+                    <p>
+                        A React-based portfolio demonstrating component-driven
+                        frontend development, API integration, routing,
+                        authentication, and modern JavaScript tooling.
+                    </p>
+
+                    <a
+                        href="http://portfolio.adrian-zalewski.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Explore React →
+                    </a>
+
+                </article>
+
+
+                <article class="portfolio-project-card">
+
+                    <span class="portfolio-project-card__number">
+                        03
+                    </span>
+
+                    <h3>
+                        Laravel Portfolio
+                    </h3>
+
+                    <p>
+                        A Laravel CMS and REST API application demonstrating
+                        PHP application architecture, OAuth2 authentication,
+                        API resources, permissions, and a React frontend.
+                    </p>
+
+                    <a
+                        href="https://portfolio-source.adrian-zalewski.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Explore Laravel →
+                    </a>
+
+                </article>
+
+
+                <article class="portfolio-project-card">
+
+                    <span class="portfolio-project-card__number">
+                        04
+                    </span>
+
+                    <h3>
+                        WordPress Portfolio
+                    </h3>
+
+                    <p>
+                        A WordPress-based portfolio demonstrating custom
+                        development, content management, integrations,
+                        performance, SEO, and production website management.
+                    </p>
+
+                    <a
+                        href="https://adrian-zalewski.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Explore WordPress →
+                    </a>
+
+                </article>
+
+
+                <article class="portfolio-project-card">
+
+                    <span class="portfolio-project-card__number">
+                        05
+                    </span>
+
+                    <h3>
+                        Drupal Blog
+                    </h3>
+
+                    <p>
+                        A Drupal-powered publishing platform demonstrating
+                        custom Drupal development, content architecture,
+                        theming, modules, and production deployment.
+                    </p>
+
+                    <a
+                        href="https://myurbanclothing.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Explore Drupal →
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        {# ============================================================
+           Core Competencies
+           ============================================================ #}
+        <section
+            id="skills"
+            class="competencies"
+        >
+
+            <div class="competencies__header">
+
+                <span class="section-eyebrow">
+                    Core Competencies
+                </span>
+
+                <h2>
+                    Technologies &amp; Expertise
+                </h2>
+
+                <p>
+                    My core competencies are managed through the Symfony CMS,
+                    allowing the portfolio to dynamically display my skills,
+                    categories, experience levels, and descriptions.
+                </p>
+
+            </div>
+
+
+            <div class="competencies__categories">
+
+                {% for category in categories %}
+
+                    <section class="competency-category">
+
+                        <div class="competency-category__header">
+
+                            <h3>
+                                {{ category.name }}
+                            </h3>
+
+                            {% if category.description %}
+                                <p>
+                                    {{ category.description }}
+                                </p>
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="competency-category__skills">
+
+                            {% for skill in category.skills %}
+
+                                <button
+                                    type="button"
+                                    class="skill-card"
+                                    data-skill-name="{{ skill.name }}"
+                                    data-skill-rating="{{ skill.rating }}"
+                                >
+                                    <span class="skill-card__meter">
+                                        <span
+                                            class="skill-card__meter-progress"
+                                            style="--skill-rating: {{ skill.rating }}%;"
+                                        ></span>
+
+                                        <span class="skill-card__meter-value">
+                                            {{ skill.rating }}
+                                        </span>
+                                    </span>
+
+                                    <span class="skill-card__content">
+                                        <span class="skill-card__name">
+                                            {{ skill.name }}
+                                        </span>
+
+                                        <span class="skill-card__hint">
+                                            View skill details
+                                        </span>
+                                    </span>
+
+                                    <span class="skill-card__description-data">
+                                        {{ skill.description|default('') }}
+                                    </span>
+                                </button>
+
+                            {% else %}
+
+                                <p class="competency-category__empty">
+                                    No skills have been added to this category yet.
+                                </p>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </section>
+
+                {% else %}
+
+                    <div class="competencies__empty">
+                        <h3>No competencies available yet.</h3>
+                        <p>
+                            Skills and categories will appear here once they
+                            have been added through the portfolio dashboard.
+                        </p>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        {# ============================================================
+           Skill Description Modal
+           ============================================================ #}
+        <div
+            class="skill-modal"
+            id="skill-modal"
+            aria-hidden="true"
+        >
+
+            <div class="skill-modal__backdrop"></div>
+
+            <div
+                class="skill-modal__dialog"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="skill-modal-title"
+            >
+
+                <button
+                    type="button"
+                    class="skill-modal__close"
+                    aria-label="Close skill details"
+                >
+                    &times;
+                </button>
+
+                <span class="skill-modal__eyebrow">
+                    Core Competency
+                </span>
+
+                <h2 id="skill-modal-title">
+                    Skill
+                </h2>
+
+                <div class="skill-modal__rating">
+                    <span class="skill-modal__rating-value">0</span>
+                    <span>/ 100</span>
+                </div>
+
+                <p
+                    class="skill-modal__description"
+                    id="skill-modal-description"
+                ></p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    {# ================================================================
+       Footer
+       ================================================================ #}
+    <footer class="portfolio-footer">
+
+        <div class="portfolio-footer__content">
+
+            <div class="portfolio-footer__intro">
+
+                <span class="section-eyebrow">
+                    Let's Connect
+                </span>
+
+                <h2>
+                    Interested in working together?
+                </h2>
+
+                <p>
+                    I'm always interested in discussing challenging web
+                    development projects, application architecture, and
+                    opportunities to build something useful.
+                </p>
+
+            </div>
+
+
+            <div class="portfolio-footer__contact">
+
+                <a href="tel:+14013883998">
+                    <span>Phone</span>
+                    <strong>(401) 388-3998</strong>
+                </a>
+
+                <a href="mailto:fictionarts@gmail.com">
+                    <span>Email</span>
+                    <strong>fictionarts@gmail.com</strong>
+                </a>
+
+            </div>
+
+
+            <div class="portfolio-footer__links">
+
+                <a
+                    href="https://github.com/adrianzalewski88"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/in/adrian-zalewski-1988-fa/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    LinkedIn
+                </a>
+
+                <a href="{{ path('app_login') }}">
+                    Dashboard Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-footer__bottom">
+
+            <p>
+                &copy; {{ "now"|date("Y") }} Adrian Zalewski. All rights reserved.
+            </p>
+
+            <p>
+                Built with Symfony.
+            </p>
+
+        </div>
+
+    </footer>
+
+{% endblock %}

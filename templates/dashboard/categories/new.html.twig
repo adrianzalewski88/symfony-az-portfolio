@@ -1,71 +1,99 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/layout.html.twig' %}
 
-{% block title %}Add Category{% endblock %}
+{% block title %}
+    Add Category
+{% endblock %}
 
-{% block body %}
+{% block dashboard_content %}
 
-    <main class="dashboard-page">
+    <section class="dashboard-form-page">
 
-        <div class="dashboard-container dashboard-container--narrow">
+        <div class="dashboard-page-header">
 
-            <div class="dashboard-page__header">
+            <div class="dashboard-page-header__content">
 
-                <div>
-                    <span class="dashboard-page__eyebrow">
-                        AZ Portfolio Symfony
-                    </span>
+                <span class="dashboard-page-header__eyebrow">
+                    Category Management
+                </span>
 
-                    <h1 class="dashboard-page__title">
-                        Add Category
-                    </h1>
+                <h1 class="dashboard-page-header__title">
+                    Add Category
+                </h1>
 
-                    <p class="dashboard-page__description">
-                        Create a category for organizing your portfolio skills.
-                    </p>
-                </div>
+                <p class="dashboard-page-header__description">
+                    Create a category for organizing your portfolio skills.
+                </p>
 
             </div>
 
-            <div class="dashboard-form-card">
+            <div class="dashboard-page-header__actions">
 
-                {{ form_start(form, {
-                    attr: {
-                        class: 'dashboard-form'
-                    }
-                }) }}
-
-                    {{ form_row(form.name) }}
-
-                    {{ form_row(form.slug) }}
-
-                    {{ form_row(form.description) }}
-
-                    {{ form_row(form.sortOrder) }}
-
-                    <div class="dashboard-form__actions">
-
-                        <button
-                            type="submit"
-                            class="btn btn--primary"
-                        >
-                            Create Category
-                        </button>
-
-                        <a
-                            href="{{ path('dashboard_categories_index') }}"
-                            class="btn btn--secondary"
-                        >
-                            Cancel
-                        </a>
-
-                    </div>
-
-                {{ form_end(form) }}
+                <a
+                    href="{{ path('dashboard_categories_index') }}"
+                    class="btn btn--secondary"
+                >
+                    ← Back to Categories
+                </a>
 
             </div>
 
         </div>
 
-    </main>
+
+        <div class="dashboard-form-card">
+
+            {{ form_start(form, {
+                attr: {
+                    class: 'dashboard-form'
+                }
+            }) }}
+
+                <div class="dashboard-form__grid">
+
+                    <div class="dashboard-form__field dashboard-form__field--full">
+                        {{ form_row(form.name) }}
+                    </div>
+
+
+                    <div class="dashboard-form__field dashboard-form__field--full">
+                        {{ form_row(form.slug) }}
+                    </div>
+
+
+                    <div class="dashboard-form__field dashboard-form__field--full">
+                        {{ form_row(form.description) }}
+                    </div>
+
+
+                    <div class="dashboard-form__field dashboard-form__field--full">
+                        {{ form_row(form.sortOrder) }}
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-form__actions">
+
+                    <a
+                        href="{{ path('dashboard_categories_index') }}"
+                        class="btn btn--secondary"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn btn--primary"
+                    >
+                        Create Category
+                    </button>
+
+                </div>
+
+            {{ form_end(form) }}
+
+        </div>
+
+    </section>
 
 {% endblock %}

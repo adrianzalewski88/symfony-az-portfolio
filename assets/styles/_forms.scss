@@ -1,0 +1,406 @@
+@use "variables" as v;
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.form-label {
+    color: v.$text;
+    font-size: 0.75rem;
+    font-weight: 750;
+}
+
+.form-control,
+.form-select {
+    width: 100%;
+    min-height: 42px;
+    padding: 0.65rem 0.8rem;
+
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: v.$radius-md;
+
+    color: v.$text;
+    background: rgba(255, 255, 255, 0.9);
+
+    outline: none;
+
+    transition:
+        border-color v.$transition-fast,
+        box-shadow v.$transition-fast,
+        background v.$transition-fast;
+}
+
+.form-control::placeholder {
+    color: #94A3B8;
+}
+
+.form-control:hover,
+.form-select:hover {
+    border-color: rgba(v.$primary, 0.25);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: v.$primary;
+
+    background: v.$white;
+
+    box-shadow:
+        0 0 0 3px rgba(v.$primary, 0.1);
+}
+
+.form-textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 640px) {
+    .form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   Dashboard Form Pages
+   ========================================================= */
+
+.dashboard-form-page {
+    position: relative;
+    z-index: 1;
+}
+
+
+/*
+ * Page Header
+ */
+
+.dashboard-page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 2rem;
+
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-page-header__content {
+    min-width: 0;
+}
+
+.dashboard-page-header__eyebrow {
+    display: inline-flex;
+    align-items: center;
+
+    margin-bottom: 0.65rem;
+
+    color: v.$primary;
+
+    font-size: 0.68rem;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+    line-height: 1;
+
+    text-transform: uppercase;
+}
+
+.dashboard-page-header__title {
+    margin: 0 0 0.5rem;
+
+    color: v.$text;
+
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 850;
+    line-height: 1.1;
+
+    letter-spacing: -0.035em;
+}
+
+.dashboard-page-header__description {
+    max-width: 680px;
+
+    margin: 0;
+
+    color: v.$text-muted;
+
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.dashboard-page-header__actions {
+    display: flex;
+    align-items: center;
+
+    flex: 0 0 auto;
+
+    gap: 0.75rem;
+}
+
+
+/*
+ * Form Card
+ */
+
+.dashboard-form-card {
+    position: relative;
+
+    width: 100%;
+
+    padding: 1.75rem;
+
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: v.$radius-xl;
+
+    background: rgba(255, 255, 255, 0.86);
+
+    box-shadow: v.$shadow-sm;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.dashboard-form-card::before {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background: v.$primary;
+
+    opacity: 0.035;
+
+    filter: blur(45px);
+
+    pointer-events: none;
+
+    content: "";
+}
+
+
+/*
+ * Form Layout
+ */
+
+.dashboard-form {
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-form__grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 1.25rem;
+}
+
+.dashboard-form__field {
+    min-width: 0;
+}
+
+.dashboard-form__field--full {
+    grid-column: 1 / -1;
+}
+
+
+/*
+ * Symfony Form Fields
+ *
+ * Symfony's form_row() generates:
+ *
+ * label
+ * input/select/textarea
+ * errors/help text
+ */
+
+.dashboard-form .form-row,
+.dashboard-form .form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.45rem;
+
+    width: 100%;
+}
+
+.dashboard-form label {
+    color: v.$text;
+
+    font-size: 0.72rem;
+    font-weight: 750;
+}
+
+.dashboard-form input,
+.dashboard-form textarea,
+.dashboard-form select {
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 0.7rem 0.8rem;
+
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: v.$radius-md;
+
+    color: v.$text;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    outline: none;
+
+    transition:
+        border-color v.$transition-fast,
+        box-shadow v.$transition-fast,
+        background v.$transition-fast;
+}
+
+.dashboard-form textarea {
+    min-height: 150px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+.dashboard-form input::placeholder,
+.dashboard-form textarea::placeholder {
+    color: #94A3B8;
+}
+
+.dashboard-form input:hover,
+.dashboard-form textarea:hover,
+.dashboard-form select:hover {
+    border-color: rgba(v.$primary, 0.25);
+}
+
+.dashboard-form input:focus,
+.dashboard-form textarea:focus,
+.dashboard-form select:focus {
+    border-color: v.$primary;
+
+    background: v.$white;
+
+    box-shadow:
+        0 0 0 3px rgba(v.$primary, 0.1);
+}
+
+
+/*
+ * Symfony Validation Errors
+ */
+
+.dashboard-form ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.dashboard-form .form-error-message,
+.dashboard-form .form-error-icon {
+    color: v.$danger;
+
+    font-size: 0.7rem;
+}
+
+.dashboard-form .is-invalid,
+.dashboard-form input:invalid:not(:placeholder-shown),
+.dashboard-form textarea:invalid:not(:placeholder-shown),
+.dashboard-form select:invalid {
+    border-color: rgba(v.$danger, 0.5);
+}
+
+
+/*
+ * Form Actions
+ */
+
+.dashboard-form__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 0.75rem;
+
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+
+/*
+ * Responsive
+ */
+
+@media (max-width: 768px) {
+
+    .dashboard-page-header {
+        flex-direction: column;
+
+        gap: 1rem;
+    }
+
+    .dashboard-page-header__actions {
+        width: 100%;
+    }
+
+    .dashboard-page-header__actions .btn {
+        width: 100%;
+    }
+
+    .dashboard-form-card {
+        padding: 1.25rem;
+    }
+
+    .dashboard-form__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-form__field--full {
+        grid-column: auto;
+    }
+
+}
+
+
+@media (max-width: 640px) {
+
+    .dashboard-form-card {
+        padding: 1rem;
+    }
+
+    .dashboard-form__actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .dashboard-form__actions .btn {
+        width: 100%;
+    }
+
+}
