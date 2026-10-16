@@ -350,6 +350,10 @@
     color: v.$secondary;
 }
 
+.portfolio-project-card a.disabled-link {
+    color: v.$text-muted;
+    pointer-events: none;
+}
 
 /* ============================================================
    Core Competencies
