@@ -57,6 +57,9 @@ jobs:
       - name: Validate Composer configuration
         run: composer validate --no-check-publish
 
+      - name: Build Sass assets
+        run: php bin/console sass:build
+
       - name: Verify test database connection
         run: php bin/console dbal:run-sql "SELECT DATABASE()" --env=test
 
