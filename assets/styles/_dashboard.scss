@@ -83,12 +83,21 @@
     font-size: 0.95rem;
 }
 
-.dashboard__actions {
+.dashboard__actions,
+.page-header__actions {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     flex-shrink: 0;
 }
+
+.page-header__actions {
+    margin-bottom: 2rem;
+}
+.page-header__actions .btn {
+    width: 100%;
+}
+
 
 @media (max-width: 768px) {
     .dashboard__heading {

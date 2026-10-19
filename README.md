@@ -362,22 +362,6 @@ This project is more than a portfolio website. It is intended to demonstrate pra
 * GitHub Actions
 * CI/CD
 
-## 🧭 Roadmap
-
-Planned development includes:
-
-* [ ] Complete Symfony portfolio application
-* [ ] Implement portfolio project entities
-* [ ] Implement project categories
-* [ ] Implement project detail pages
-* [ ] Improve database architecture
-* [ ] Add comprehensive validation
-* [ ] Expand automated testing
-* [ ] Add API endpoints
-* [ ] Improve CI validation
-* [ ] Continue production deployment automation
-* [ ] Integrate the application with the broader AZ Portfolio ecosystem
-
 ## 📚 Related AZ Portfolio Projects
 
 The Symfony application is one part of a larger portfolio project demonstrating multiple modern PHP development approaches.
