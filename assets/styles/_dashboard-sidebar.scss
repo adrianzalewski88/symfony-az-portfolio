@@ -290,10 +290,7 @@
 
 @media (max-width: 1024px) {
     .dashboard-sidebar {
-        transform: translateX(-100%);
-    }
-
-    .dashboard-sidebar--open {
-        transform: translateX(0);
+        width: 100%;
+        position: relative;
     }
 }

@@ -304,20 +304,32 @@
 
                             {% for skill in category.skills %}
 
+                                {% set rating = skill.rating %}
+
+                                {% if rating == 0 %}
+                                    {% set ratingState = 'critical' %}
+                                {% elseif rating < 25 %}
+                                    {% set ratingState = 'low' %}
+                                {% elseif rating < 75 %}
+                                    {% set ratingState = 'medium' %}
+                                {% elseif rating < 90 %}
+                                    {% set ratingState = 'high' %}
+                                {% else %}
+                                    {% set ratingState = 'excellent' %}
+                                {% endif %}
+
                                 <button
                                     type="button"
-                                    class="skill-card"
+                                    class="skill-card skill-card--{{ ratingState }}"
                                     data-skill-name="{{ skill.name }}"
-                                    data-skill-rating="{{ skill.rating }}"
+                                    data-skill-rating="{{ rating }}"
                                 >
-                                    <span class="skill-card__meter">
-                                        <span
-                                            class="skill-card__meter-progress"
-                                            style="--skill-rating: {{ skill.rating }}%;"
-                                        ></span>
-
+                                    <span
+                                        class="skill-card__meter"
+                                        style="--skill-rating: {{ rating }}%;"
+                                    >
                                         <span class="skill-card__meter-value">
-                                            {{ skill.rating }}
+                                            {{ rating }}
                                         </span>
                                     </span>
 

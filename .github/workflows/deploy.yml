@@ -1,41 +1,115 @@
-name: Deploy AZ Portfolio Symfony
+name: Test and Deploy AZ Portfolio Symfony
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
 permissions:
   contents: read
 
-concurrency:
-  group: symfony-production
-  cancel-in-progress: false
-
 jobs:
-  deploy:
+  test:
+    name: Run Symfony Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: test-root-password
+          MYSQL_DATABASE: az_portfolio_test
+          MYSQL_USER: az_portfolio
+          MYSQL_PASSWORD: az_portfolio_password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -ptest-root-password --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    env:
+      APP_ENV: test
+      APP_DEBUG: "1"
+      APP_SECRET: ci-only-test-secret
+      DATABASE_URL: "mysql://az_portfolio:az_portfolio_password@127.0.0.1:3306/az_portfolio_test?serverVersion=8.4&charset=utf8mb4"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          tools: composer:v2
+          extensions: dom, mbstring, pdo_mysql, xml, intl
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Validate Composer configuration
+        run: composer validate --no-check-publish
+
+      - name: Apply database migrations
+        run: php bin/console doctrine:migrations:migrate --no-interaction
+
+      - name: Run PHPUnit
+        run: php bin/phpunit
+
+  deploy:
+    name: Deploy to Linode
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    concurrency:
+      group: symfony-production
+      cancel-in-progress: false
+
+    env:
+      DEPLOY_SHA: ${{ github.sha }}
 
     steps:
       - name: Configure SSH
+        env:
+          LINODE_SSH_KEY: ${{ secrets.LINODE_SSH_KEY }}
+          LINODE_HOST: ${{ secrets.LINODE_HOST }}
         run: |
+          set -euo pipefail
+
           install -m 700 -d ~/.ssh
 
-          printf '%s\n' "${{ secrets.LINODE_SSH_KEY }}" > ~/.ssh/id_ed25519
-
+          printf '%s\n' "$LINODE_SSH_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
 
-          ssh-keyscan -H "${{ secrets.LINODE_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -H "$LINODE_HOST" >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
 
-      - name: Deploy Symfony application
+      - name: Deploy the tested commit
+        env:
+          LINODE_HOST: ${{ secrets.LINODE_HOST }}
+          LINODE_USER: ${{ secrets.LINODE_USER }}
         run: |
-          ssh "${{ secrets.LINODE_USER }}@${{ secrets.LINODE_HOST }}" << 'EOF'
-            set -e
+          set -euo pipefail
+
+          ssh "$LINODE_USER@$LINODE_HOST" \
+            "bash -s -- '$DEPLOY_SHA'" <<'EOF'
+            set -euo pipefail
+
+            DEPLOY_SHA="$1"
 
             cd /var/www/html/symfony.adrian-zalewski.com/public_html
 
             git fetch origin main
-            git reset --hard origin/main
+            git reset --hard "$DEPLOY_SHA"
 
             composer install \
               --no-dev \
@@ -47,11 +121,20 @@ jobs:
             rm -rf var/cache/prod
 
             APP_ENV=prod php bin/console sass:build
-
             APP_ENV=prod php bin/console asset-map:compile
-
             APP_ENV=prod php bin/console doctrine:migrations:migrate --no-interaction
-
             APP_ENV=prod php bin/console cache:clear
             APP_ENV=prod php bin/console cache:warmup
           EOF
+
+      - name: Check deployed homepage
+        run: |
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --retry 5 \
+            --retry-delay 3 \
+            --retry-connrefused \
+            https://symfony.adrian-zalewski.com/ \
+            --output /dev/null

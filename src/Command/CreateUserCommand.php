@@ -27,7 +27,7 @@ class CreateUserCommand
     {
         $io->title('AZ Portfolio User Creation');
 
-        $email = strtolower(trim($io->ask(
+        $email = strtolower(trim((string) $io->ask(
             'Email address'
         )));
 
@@ -45,8 +45,8 @@ class CreateUserCommand
 
             return Command::FAILURE;
         }
-
-        $firstName = trim($io->ask(
+    
+        $firstName = trim((string) $io->ask(
             'First name'
         ));
 
@@ -56,7 +56,7 @@ class CreateUserCommand
             return Command::INVALID;
         }
 
-        $lastName = trim($io->ask(
+        $lastName = trim((string) $io->ask(
             'Last name'
         ));
 

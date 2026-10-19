@@ -500,11 +500,14 @@
     display: none;
 }
 
+
+/* ============================================================
+   Skill Card Meter
+   ============================================================ */
+
 .skill-card__meter {
     position: relative;
-
     flex: 0 0 48px;
-
     width: 48px;
     height: 48px;
 
@@ -513,30 +516,19 @@
 
     border-radius: 50%;
 
-    background:
-        conic-gradient(
-            from 0deg,
-            #ef4444 0%,
-            #facc15 50%,
-            #22c55e 100%
-        );
+    --skill-meter-color: #{v.$success};
 
-    mask:
-        conic-gradient(
-            from 0deg,
-            #000 0 var(--skill-rating),
-            transparent var(--skill-rating) 100%
-        );
+    background: conic-gradient(
+        var(--skill-meter-color) var(--skill-rating, 0%),
+        #{v.$border} 0
+    );
 }
 
 .skill-card__meter::before {
     content: "";
-
     position: absolute;
     inset: 5px;
-
     border-radius: 50%;
-
     background: v.$surface-light;
 }
 
@@ -552,6 +544,30 @@
 
     font-size: 0.75rem;
     font-weight: 800;
+}
+
+/* ============================================================
+   Skill Rating States
+   ============================================================ */
+
+.skill-card--critical .skill-card__meter {
+    --skill-meter-color: #{v.$danger};
+}
+
+.skill-card--low .skill-card__meter {
+    --skill-meter-color: #F97316;
+}
+
+.skill-card--medium .skill-card__meter {
+    --skill-meter-color: #{v.$warning};
+}
+
+.skill-card--high .skill-card__meter {
+    --skill-meter-color: #84CC16;
+}
+
+.skill-card--excellent .skill-card__meter {
+    --skill-meter-color: #{v.$success};
 }
 
 .skill-card__content {
@@ -714,7 +730,7 @@
 
     margin-bottom: 1.5rem;
 
-    color: rgba(248, 250, 252, 0.45);
+    color: v.$text-muted;
 
     font-size: 0.9rem;
 }
