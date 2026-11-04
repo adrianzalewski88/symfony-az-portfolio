@@ -24,7 +24,7 @@
 ###< php-cs-fixer ###
 
 ###> Docker ###
-/docker-compose.override.yml
+compose.override.yaml
 ###< Docker ###
 
 ###> IDE ###
@@ -42,4 +42,4 @@ Thumbs.db
 ###> symfony/asset-mapper ###
 /public/assets/
 /assets/vendor/
-###< symfony/asset-mapper ###
+###< symfony/asset-mapper ###docker-compose.override.yml
